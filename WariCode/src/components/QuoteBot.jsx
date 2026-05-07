@@ -3,8 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Bot, Send, X, Sparkles, Loader2 } from 'lucide-react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+// Configuración de Gemini segura mediante variables de entorno
+const apiKey = import.meta.env.VITE_GEMINI_KEY;
+const genAI = new GoogleGenerativeAI(apiKey || "");
+const model = genAI.getGenerativeModel({ 
+  model: "gemini-flash-latest",
+  systemInstruction: "Eres WARI AI, la inteligencia artificial central de 'WariCode', una firma de ingeniería de software de alto nivel. Tu tono es: Tecnológico, Profesional, Directo y Elegante. Tus capacidades: Explicar servicios de WariCode (Ecommerce, Web Master, Interfaces de Lujo, IA), dar consejos técnicos y guiar a nuevos clientes. Contexto: WariCode crea software que 'define el futuro de las industrias'. Responde de forma concisa. Usa un lenguaje que proyecte autoridad técnica."
+});
 
 const QuoteBot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,19 +30,30 @@ const QuoteBot = () => {
 
   const handleSendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
+
     const userText = inputValue;
-    setMessages(prev => [...prev, { role: 'user', text: userText }]);
+    const newMessages = [...messages, { role: 'user', text: userText }];
+    setMessages(newMessages);
     setInputValue('');
     setIsLoading(true);
 
     try {
-      const prompt = `Eres WARI AI, la IA de WariCode. Sé profesional, breve y directo. Responde a: ${userText}`;
-      const result = await model.generateContent(prompt);
+      // Configurar el historial para Gemini (omitiendo el saludo inicial de la IA)
+      const history = messages.slice(1).map(msg => ({
+        role: msg.role === 'user' ? 'user' : 'model',
+        parts: [{ text: msg.text }],
+      }));
+
+      const chat = model.startChat({ history });
+      const result = await chat.sendMessage(userText);
       const response = await result.response;
       const text = response.text();
+
       setMessages(prev => [...prev, { role: 'ai', text: text }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'ai', text: `ERROR: ${error.message}` }]);
+      console.error("WARI_AI_ERROR:", error);
+      const errorMsg = error.message || "Falla en la sincronización neural.";
+      setMessages(prev => [...prev, { role: 'ai', text: `ERROR_SISTEMA: ${errorMsg}` }]);
     } finally {
       setIsLoading(false);
     }
@@ -62,7 +78,7 @@ const QuoteBot = () => {
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             className="fixed bottom-20 right-4 md:right-6 z-50 w-[92vw] md:w-[320px] h-[480px] bg-[#050505] rounded-2xl overflow-hidden border border-white/10 flex flex-col shadow-2xl"
           >
-            {/* Header Compacto */}
+            {/* Header */}
             <div className="p-4 bg-white/[0.02] flex items-center justify-between border-b border-white/5">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-lg bg-cyber-blue/10 flex items-center justify-center border border-cyber-blue/20">
@@ -72,7 +88,7 @@ const QuoteBot = () => {
                   <h4 className="text-[11px] font-black text-white uppercase tracking-tighter">WARI_AI</h4>
                   <div className="flex items-center gap-1">
                     <div className="w-1 h-1 rounded-full bg-cyber-blue animate-pulse" />
-                    <span className="text-[7px] text-cyber-blue font-bold uppercase tracking-widest">Active</span>
+                    <span className="text-[7px] text-cyber-blue font-bold uppercase tracking-widest">Memoria_Activa</span>
                   </div>
                 </div>
               </div>
@@ -108,7 +124,7 @@ const QuoteBot = () => {
               <div ref={chatEndRef} />
             </div>
 
-            {/* Input Compacto */}
+            {/* Input Area */}
             <div className="p-4 border-t border-white/5 bg-black">
               <div className="relative flex items-center gap-2">
                 <input
@@ -116,7 +132,7 @@ const QuoteBot = () => {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  placeholder="Escribe aquí..."
+                  placeholder="Inyectar consulta..."
                   className="flex-1 bg-white/[0.03] border border-white/10 rounded-xl py-2.5 px-4 text-[11px] text-white focus:outline-none focus:border-cyber-blue/30 transition-all"
                 />
                 <button
