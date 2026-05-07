@@ -1,139 +1,132 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bot, MessageSquare, Send, X, CheckCircle2, Sparkles, ChevronRight } from 'lucide-react';
+import { Bot, Send, X, Sparkles, Loader2 } from 'lucide-react';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+const genAI = new GoogleGenerativeAI("AIzaSyBuThvlr7KOaQ_JL4yAMCU_iWhRCccBQf8");
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 const QuoteBot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [step, setStep] = useState(0);
-  const [selections, setSelections] = useState([]);
-  
-  const options = [
-    {
-      question: "¿Qué tipo de arquitectura buscas?",
-      choices: [
-        { label: "Ecosistema E-commerce", price: 2500 },
-        { label: "Sistemas Web Master", price: 1200 },
-        { label: "Interfaces de Alta Gama", price: 600 },
-        { label: "Integración de IA", price: 800 }
-      ]
-    },
-    {
-      question: "¿Escala del proyecto?",
-      choices: [
-        { label: "Protocolo Inicial (MVP)", factor: 1 },
-        { label: "Protocolo Business", factor: 1.5 },
-        { label: "Protocolo Enterprise", factor: 2.5 }
-      ]
+  const [messages, setMessages] = useState([
+    { role: 'ai', text: 'Bienvenido a WariCode. Soy WARI AI, su consultor de ingeniería de alto impacto. ¿Cómo puedo asistir en el desarrollo de su visión tecnológica hoy?' }
+  ]);
+  const [inputValue, setInputValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const chatEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    if (isOpen) scrollToBottom();
+  }, [messages, isOpen]);
+
+  const handleSendMessage = async () => {
+    if (!inputValue.trim() || isLoading) return;
+    const userText = inputValue;
+    setMessages(prev => [...prev, { role: 'user', text: userText }]);
+    setInputValue('');
+    setIsLoading(true);
+
+    try {
+      const prompt = `Eres WARI AI, la IA de WariCode. Sé profesional, breve y directo. Responde a: ${userText}`;
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = response.text();
+      setMessages(prev => [...prev, { role: 'ai', text: text }]);
+    } catch (error) {
+      setMessages(prev => [...prev, { role: 'ai', text: `ERROR: ${error.message}` }]);
+    } finally {
+      setIsLoading(false);
     }
-  ];
-
-  const handleChoice = (choice) => {
-    setSelections([...selections, choice]);
-    setStep(step + 1);
-  };
-
-  const calculateTotal = () => {
-    if (selections.length < 2) return 0;
-    return selections[0].price * selections[1].factor;
-  };
-
-  const reset = () => {
-    setStep(0);
-    setSelections([]);
   };
 
   return (
     <>
-      {/* Trigger Button */}
       <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 p-4 bg-white text-raven-950 rounded-2xl shadow-2xl border border-white/20 group overflow-hidden"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 p-3.5 bg-white text-black rounded-2xl shadow-xl border border-white/20"
       >
-        <Bot className="w-6 h-6 relative z-10" />
+        {isOpen ? <X size={20} /> : <Bot size={20} />}
       </motion.button>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.98 }}
-            className="fixed bottom-24 right-6 z-50 w-72 md:w-[280px] zen-card rounded-2xl overflow-hidden border border-white/10"
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            className="fixed bottom-20 right-4 md:right-6 z-50 w-[92vw] md:w-[320px] h-[480px] bg-[#050505] rounded-2xl overflow-hidden border border-white/10 flex flex-col shadow-2xl"
           >
-            {/* Header */}
-            <div className="p-3 bg-white/[0.02] flex items-center justify-between border-b border-white/5">
-              <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg bg-cyber-blue/10 flex items-center justify-center">
-                  <Sparkles className="w-3.5 h-3.5 text-cyber-blue" />
+            {/* Header Compacto */}
+            <div className="p-4 bg-white/[0.02] flex items-center justify-between border-b border-white/5">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-cyber-blue/10 flex items-center justify-center border border-cyber-blue/20">
+                  <Sparkles size={16} className="text-cyber-blue" />
                 </div>
                 <div>
-                  <h4 className="text-[10px] font-bold tracking-tight">WARI AI</h4>
-                  <p className="text-[7px] text-white/20 font-bold tracking-[0.1em] uppercase">Sincronizador</p>
+                  <h4 className="text-[11px] font-black text-white uppercase tracking-tighter">WARI_AI</h4>
+                  <div className="flex items-center gap-1">
+                    <div className="w-1 h-1 rounded-full bg-cyber-blue animate-pulse" />
+                    <span className="text-[7px] text-cyber-blue font-bold uppercase tracking-widest">Active</span>
+                  </div>
                 </div>
               </div>
-              <button onClick={() => setIsOpen(false)} className="w-5 h-5 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors">
-                <X className="w-3 h-3 text-white/20" />
+              <button 
+                onClick={() => setIsOpen(false)} 
+                className="text-white/60 hover:text-white p-1.5 hover:bg-white/10 rounded-lg transition-all"
+              >
+                <X size={18} />
               </button>
             </div>
 
-            {/* Chat Content */}
-            <div className="p-4 min-h-[240px] flex flex-col justify-end">
-              <AnimatePresence mode="wait">
-                {step < options.length ? (
-                  <motion.div
-                    key={step}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="space-y-4"
-                  >
-                    <p className="text-sm font-medium text-white/90 leading-tight">
-                      {options[step].question}
-                    </p>
+            {/* Chat Area */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] bg-fixed">
+              {messages.map((msg, i) => (
+                <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                  <div className={`max-w-[85%] p-3 rounded-xl text-[11px] leading-relaxed ${
+                    msg.role === 'user' 
+                      ? 'bg-cyber-blue text-black font-bold rounded-tr-none' 
+                      : 'bg-white/[0.05] text-white/90 border border-white/5 rounded-tl-none backdrop-blur-md'
+                  }`}>
+                    {msg.text}
+                  </div>
+                </div>
+              ))}
+              {isLoading && (
+                <div className="flex justify-start">
+                  <div className="bg-white/[0.03] p-3 rounded-xl border border-white/5 flex items-center gap-2">
+                    <Loader2 size={12} className="animate-spin text-cyber-blue" />
+                    <span className="text-[8px] text-white/20 font-bold uppercase">Procesando...</span>
+                  </div>
+                </div>
+              )}
+              <div ref={chatEndRef} />
+            </div>
 
-                    <div className="grid grid-cols-1 gap-2">
-                      {options[step].choices.map((choice, i) => (
-                        <motion.button
-                          key={i}
-                          whileHover={{ x: 5, backgroundColor: 'rgba(255,255,255,0.03)' }}
-                          onClick={() => handleChoice(choice)}
-                          className="w-full text-left p-3 text-[11px] bg-white/[0.01] rounded-xl border border-white/5 transition-all group flex items-center justify-between"
-                        >
-                          <span className="font-medium text-white/50 group-hover:text-white">{choice.label}</span>
-                          <ChevronRight size={10} className="opacity-20 group-hover:opacity-100 transition-opacity text-cyber-blue" />
-                        </motion.button>
-                      ))}
-                    </div>
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-center space-y-6 py-4"
-                  >
-                    <div className="w-12 h-12 bg-cyber-blue/10 rounded-xl flex items-center justify-center mx-auto">
-                      <CheckCircle2 className="w-6 h-6 text-cyber-blue" />
-                    </div>
-                    <div>
-                      <p className="text-[8px] text-white/20 uppercase tracking-[0.3em] font-bold mb-2">Inversión Estimada</p>
-                      <h3 className="text-3xl font-black font-heading tracking-tighter text-white">S/ {calculateTotal()}</h3>
-                    </div>
-                    <div className="space-y-2">
-                      <button className="w-full py-3 bg-white text-raven-950 font-bold rounded-xl text-[9px] uppercase tracking-widest hover:scale-[1.02] transition-all">
-                        INICIAR
-                      </button>
-                      <button 
-                        onClick={reset}
-                        className="text-[8px] text-white/20 hover:text-white font-bold tracking-[0.2em] uppercase transition-colors"
-                      >
-                        Reiniciar
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+            {/* Input Compacto */}
+            <div className="p-4 border-t border-white/5 bg-black">
+              <div className="relative flex items-center gap-2">
+                <input
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                  placeholder="Escribe aquí..."
+                  className="flex-1 bg-white/[0.03] border border-white/10 rounded-xl py-2.5 px-4 text-[11px] text-white focus:outline-none focus:border-cyber-blue/30 transition-all"
+                />
+                <button
+                  onClick={handleSendMessage}
+                  disabled={isLoading}
+                  className="w-10 h-10 bg-white text-black rounded-xl flex items-center justify-center hover:bg-cyber-blue transition-all disabled:opacity-50"
+                >
+                  <Send size={16} />
+                </button>
+              </div>
             </div>
           </motion.div>
         )}

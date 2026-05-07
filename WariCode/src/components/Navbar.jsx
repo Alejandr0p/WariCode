@@ -25,12 +25,12 @@ const Navbar = () => {
             : 'w-full max-w-6xl bg-transparent py-4 rounded-none'
         } flex items-center justify-between px-10`}
       >
-        <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue shadow-[0_0_10px_#10B981]" />
+        <a href="#inicio" className="flex items-center gap-2 group cursor-pointer">
+          <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue shadow-[0_0_10px_#10B981] group-hover:scale-125 transition-transform" />
           <span className="text-lg font-black tracking-tighter text-white">
             WariCode<span className="text-cyber-blue">.</span>
           </span>
-        </div>
+        </a>
         
         <div className="hidden md:flex items-center gap-8">
           {[

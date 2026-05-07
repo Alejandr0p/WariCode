@@ -37,7 +37,7 @@ const ScrambleLetter = ({ finalChar, delay }) => {
 };
 
 const Hero = () => {
-  const title = "WARICODE";
+  const title = "WariCode";
 
   return (
     <section id="inicio" className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-transparent">

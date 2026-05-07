@@ -78,13 +78,17 @@ const App = () => {
                     name: 'LEONARDO', 
                     node: 'NODE_001', 
                     role: 'SYSTEM_ARCHITECT',
-                    bio: 'Especialista en arquitecturas distribuidas de alta resiliencia.' 
+                    bio: 'Especialista en arquitecturas distribuidas de alta resiliencia.',
+                    ig: '@lk_leao',
+                    link: 'https://www.instagram.com/lk_leao/'
                   },
                   { 
                     name: 'ALEJANDRO', 
                     node: 'NODE_002', 
                     role: 'UX_STRATEGIST',
-                    bio: 'Maestro en el diseño de flujos cognitivos y reactivos.' 
+                    bio: 'Maestro en el diseño de flujos cognitivos y reactivos.',
+                    ig: '@alejan_droo07',
+                    link: 'https://www.instagram.com/alejan_droo07/'
                   }
                 ].map((node, i) => (
                   <motion.div 
@@ -121,13 +125,12 @@ const App = () => {
                         "{node.bio}"
                       </p>
 
-                      <div className="flex items-center gap-4 md:gap-6 pt-6 border-t border-white/5">
-                        <div className="flex-1 h-[1px] md:h-[2px] bg-white/[0.02] relative overflow-hidden">
-                          <motion.div 
-                            animate={{ x: ['-100%', '100%'] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                            className="absolute inset-y-0 w-1/3 bg-cyber-blue/40"
-                          />
+                      <div className="flex items-center justify-between pt-6 border-t border-white/5">
+                        <div className="flex items-center gap-4">
+                          <div className="w-1 md:w-2 h-[1px] bg-cyber-blue/30" />
+                          <a href={node.link} target="_blank" rel="noopener noreferrer" className="text-[9px] md:text-[11px] font-bold text-cyber-blue hover:text-white transition-colors uppercase tracking-widest">
+                            {node.ig}
+                          </a>
                         </div>
                         <span className="text-[7px] md:text-[8px] font-bold text-white/10 uppercase tracking-widest">VALIDATED</span>
                       </div>
@@ -145,8 +148,8 @@ const App = () => {
                 <div className="w-1 h-1 bg-cyber-blue" />
                 <span className="text-[9px] font-bold text-white/40 uppercase tracking-[0.2em]">WariCode System © 2024</span>
               </div>
-              <div className="flex gap-8">
-                {['Github', 'LinkedIn', 'Terminal'].map((link) => (
+              <div className="flex flex-wrap justify-center gap-8">
+                {['Instagram', 'WhatsApp', 'Github', 'LinkedIn'].map((link) => (
                   <a key={link} href="#" className="text-[9px] font-bold text-white/20 hover:text-cyber-blue uppercase tracking-[0.2em] transition-colors">{link}</a>
                 ))}
               </div>
