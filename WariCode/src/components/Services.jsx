@@ -41,22 +41,22 @@ const Services = () => {
   return (
     <section id="servicios" className="py-12 relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-          <div className="max-w-2xl">
-            <div className="absolute -left-20 top-0 text-[20rem] font-black text-white/[0.02] pointer-events-none select-none tracking-tighter">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 gap-8">
+          <div className="max-w-2xl relative">
+            <div className="absolute -left-10 md:-left-20 top-0 text-[8rem] md:text-[20rem] font-black text-white/[0.02] pointer-events-none select-none tracking-tighter">
               CODE
             </div>
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              className="text-cyber-blue font-bold tracking-[0.5em] text-[10px] uppercase mb-6"
+              className="text-cyber-blue font-bold tracking-[0.3em] md:tracking-[0.5em] text-[8px] md:text-[10px] uppercase mb-4 md:mb-6"
             >
               Nuestra Expertise
             </motion.div>
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="text-6xl md:text-8xl font-black font-heading tracking-tighter leading-[0.9] mb-8"
+              className="text-4xl md:text-8xl font-black font-heading tracking-tighter leading-[0.9] mb-6 md:mb-8"
             >
               INGENIERÍA <br />
               <span className="text-gradient">ALTO IMPACTO.</span>
@@ -67,7 +67,7 @@ const Services = () => {
             whileInView={{ opacity: 1, x: 0 }}
             className="max-w-xl"
           >
-            <p className="text-white/70 text-2xl md:text-3xl font-light leading-snug mb-8 border-l-4 border-cyber-blue pl-12 py-2">
+            <p className="text-white/70 text-lg md:text-3xl font-light leading-snug mb-4 md:mb-8 border-l-2 md:border-l-4 border-cyber-blue pl-6 md:pl-12 py-1 md:py-2">
               No creamos software común. <br />
               <motion.span 
                 initial={{ opacity: 0 }}
@@ -76,7 +76,7 @@ const Services = () => {
                 className="text-white font-bold"
               >
                 Esculpimos herramientas digitales
-              </motion.span> que definen el futuro de las industrias globales.
+              </motion.span> que definen el futuro de las industrias.
             </p>
           </motion.div>
         </div>

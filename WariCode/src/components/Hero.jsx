@@ -62,14 +62,14 @@ const Hero = () => {
             <div className="h-[1px] w-12 bg-cyber-blue/40" />
           </motion.div>
           
-          <h1 className="text-[14vw] md:text-[12rem] font-black leading-none mb-12 font-mono tracking-tighter text-white select-none flex items-center justify-center">
+          <h1 className="text-[18vw] md:text-[12rem] font-black leading-none mb-8 md:mb-12 font-mono tracking-tighter text-white select-none flex items-center justify-center">
             {title.split('').map((char, i) => (
               <ScrambleLetter key={i} finalChar={char} delay={i} />
             ))}
             <motion.span 
               animate={{ opacity: [0, 1, 0] }}
               transition={{ duration: 0.8, repeat: Infinity }}
-              className="text-cyber-blue ml-2"
+              className="text-cyber-blue ml-1 md:ml-2"
             >
               _
             </motion.span>
@@ -79,12 +79,12 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2 }}
-            className="flex flex-col items-center"
+            className="flex flex-col items-center w-full"
           >
-            <div className="flex items-center gap-6 mb-12">
-              <span className="text-white/20 text-xs font-mono">0x001_A</span>
-              <p className="text-white/40 text-lg md:text-xl font-light uppercase tracking-[0.5em] border-l border-cyber-blue/30 pl-6">
-                Ingeniería de <span className="text-white font-bold">Software</span> de Alto Nivel
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-8 md:mb-12 px-4">
+              <span className="text-white/20 text-[10px] font-mono hidden md:block">0x001_A</span>
+              <p className="text-white/40 text-sm md:text-xl font-light uppercase tracking-[0.3em] md:tracking-[0.5em] border-l-2 md:border-l border-cyber-blue/30 pl-4 md:pl-6 text-center md:text-left">
+                Ingeniería de <span className="text-white font-bold">Software</span> <br className="md:hidden" /> de Alto Nivel
               </p>
             </div>
 

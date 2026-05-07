@@ -33,13 +33,18 @@ const Navbar = () => {
         </div>
         
         <div className="hidden md:flex items-center gap-8">
-          {['Ecosistema', 'Nosotros', 'Acceso'].map((item) => (
+          {[
+            { name: 'Protocolos', id: 'protocolos' },
+            { name: 'Servicios', id: 'servicios' },
+            { name: 'Nosotros', id: 'nosotros' },
+            { name: 'Contacto', id: 'contacto' }
+          ].map((item) => (
             <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
+              key={item.name}
+              href={`#${item.id}`}
               className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/40 hover:text-white transition-all"
             >
-              {item}
+              {item.name}
             </a>
           ))}
           <motion.button 
@@ -71,14 +76,20 @@ const Navbar = () => {
             className="md:hidden absolute top-24 left-4 right-4 glass rounded-3xl p-8 pointer-events-auto"
           >
             <div className="flex flex-col gap-6 text-center">
-              {['Inicio', 'Servicios', 'Nosotros', 'Contacto'].map((item) => (
+              {[
+                { name: 'Inicio', id: 'inicio' },
+                { name: 'Protocolos', id: 'protocolos' },
+                { name: 'Servicios', id: 'servicios' },
+                { name: 'Nosotros', id: 'nosotros' },
+                { name: 'Contacto', id: 'contacto' }
+              ].map((item) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+                  key={item.name}
+                  href={`#${item.id}`}
                   className="text-2xl font-heading font-bold text-white hover:text-cyber-blue"
                   onClick={() => setIsOpen(false)}
                 >
-                  {item}
+                  {item.name}
                 </a>
               ))}
               <button className="w-full mt-4 bg-cyber-blue text-white px-5 py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
