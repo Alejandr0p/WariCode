@@ -34,7 +34,7 @@ const Navbar = () => {
         
         <div className="hidden md:flex items-center gap-8">
           {[
-            { name: 'Protocolos', id: 'protocolos' },
+            { name: 'Misión', id: 'protocolos' },
             { name: 'Servicios', id: 'servicios' },
             { name: 'Nosotros', id: 'nosotros' },
             { name: 'Contacto', id: 'contacto' }
@@ -52,7 +52,7 @@ const Navbar = () => {
             whileTap={{ scale: 0.95 }}
             className="px-6 py-2 bg-white/[0.03] border border-white/10 text-white font-bold rounded-full text-[8px] uppercase tracking-widest transition-all"
           >
-            Sincronizar
+            Contacto
           </motion.button>
         </div>
 
@@ -78,7 +78,7 @@ const Navbar = () => {
             <div className="flex flex-col gap-6 text-center">
               {[
                 { name: 'Inicio', id: 'inicio' },
-                { name: 'Protocolos', id: 'protocolos' },
+                { name: 'Misión', id: 'protocolos' },
                 { name: 'Servicios', id: 'servicios' },
                 { name: 'Nosotros', id: 'nosotros' },
                 { name: 'Contacto', id: 'contacto' }

@@ -4,40 +4,40 @@ import { Layout, ShoppingCart, Database, Bot, Zap, Shield, ChevronRight, X, Chec
 
 const services = [
   {
-    title: "Arquitectura Digital",
-    desc: "Sistemas robustos de precisión matemática.",
-    detail: "Construimos sistemas escalables que soportan el crecimiento exponencial. Desde bases de datos distribuidas hasta microservicios de alta disponibilidad diseñados para no fallar nunca.",
-    protocols: ["Diseño Estructural", "Optimización de Latencia", "Seguridad End-to-End"],
+    title: "Páginas Web y Sistemas",
+    desc: "Sitios rápidos, seguros y fáciles de usar.",
+    detail: "Desarrollamos plataformas que crecen con tu negocio. Desde sitios web profesionales hasta sistemas internos personalizados, todo diseñado para funcionar perfectamente.",
+    protocols: ["Diseño Moderno", "Carga Rápida", "Seguridad Total"],
     price: "S/ 2,500+",
     label: "Premium",
     icon: <Database className="w-6 h-6" />,
     className: "md:col-span-2",
   },
   {
-    title: "Interfaces Gama Alta",
-    desc: "Diseño zen que prioriza conversión.",
-    detail: "Experiencias de usuario fluidas con estéticas minimalistas. Enfocamos cada pixel en la conversión y la retención del cliente a través de flujos cognitivos optimizados.",
-    protocols: ["Diseño Neuro-cognitivo", "Micro-interacciones", "Performance UI"],
+    title: "Diseño de Lujo",
+    desc: "Páginas hermosas que atraen clientes.",
+    detail: "Creamos experiencias visuales que enamoran a tus visitantes. Nos enfocamos en que tu marca se vea profesional y que sea muy fácil para tus clientes comprar o contactarte.",
+    protocols: ["Imagen Profesional", "Fácil de Usar", "Adaptable a Móviles"],
     price: "S/ 1,200+",
     label: "Estratégica",
     icon: <Layout className="w-5 h-5" />,
     className: "md:col-span-1",
   },
   {
-    title: "Inteligencia Aplicada",
-    desc: "Automatización mediante IA.",
-    detail: "Integramos modelos de IA personalizados (LLMs, Visión, Predicción) para automatizar decisiones críticas en tu flujo de negocio, reduciendo costos operativos drásticamente.",
-    protocols: ["Entrenamiento de Modelos", "Automatización Cognitiva", "NLP Avanzado"],
+    title: "Inteligencia Artificial",
+    desc: "Automatiza tareas con IA.",
+    detail: "Ayudamos a que tu empresa sea más eficiente usando las últimas herramientas de IA. Automatizamos respuestas, organizamos datos y te ayudamos a ahorrar tiempo valioso.",
+    protocols: ["Chatbots Inteligentes", "Tareas Automáticas", "Análisis de Datos"],
     price: "S/ 1,800+",
     label: "Tecnológica",
     icon: <Bot className="w-5 h-5" />,
     className: "md:col-span-1",
   },
   {
-    title: "E-commerce Fluid",
-    desc: "Plataformas de alto rendimiento.",
-    detail: "Ecosistemas de venta optimizados para velocidad y escala. Integraciones robustas con pasarelas de pago mundiales, logística y marketing automatizado.",
-    protocols: ["Carga Ultra-rápida", "Pasarelas de Pago", "CRM Integrado"],
+    title: "Tiendas Online",
+    desc: "Vende tus productos en todo el mundo.",
+    detail: "Construimos tu tienda virtual lista para recibir pagos. Optimizamos todo el proceso de compra para que tus clientes tengan una experiencia fluida y segura.",
+    protocols: ["Pagos con Tarjeta", "Gestión de Pedidos", "Carrito de Compras"],
     price: "S/ 3,500+",
     label: "Negocio",
     icon: <ShoppingCart className="w-6 h-6" />,
@@ -68,8 +68,8 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               className="text-4xl md:text-8xl font-black font-heading tracking-tighter leading-[0.9] mb-6 md:mb-8"
             >
-              INGENIERÍA <br />
-              <span className="text-gradient">ALTO IMPACTO.</span>
+              PÁGINAS WEB <br />
+              <span className="text-gradient">QUE MARCAN LA DIFERENCIA.</span>
             </motion.h2>
           </div>
           <motion.div 
@@ -78,15 +78,15 @@ const Services = () => {
             className="max-w-xl"
           >
             <p className="text-white/70 text-lg md:text-3xl font-light leading-snug mb-4 md:mb-8 border-l-2 md:border-l-4 border-cyber-blue pl-6 md:pl-12 py-1 md:py-2">
-              No creamos software común. <br />
+              No creamos simples páginas. <br />
               <motion.span 
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
                 className="text-white font-bold"
               >
-                Esculpimos herramientas digitales
-              </motion.span> que definen el futuro de las industrias.
+                Creamos herramientas potentes
+              </motion.span> que ayudan a que tu negocio crezca sin límites.
             </p>
           </motion.div>
         </div>
@@ -173,14 +173,14 @@ const Services = () => {
 
                 <div className="space-y-8">
                   <div>
-                    <h4 className="text-[10px] font-bold text-white/20 uppercase tracking-[0.2em] mb-4">Descripción del Sistema</h4>
+                    <h4 className="text-[10px] font-bold text-white/20 uppercase tracking-[0.2em] mb-4">Sobre este servicio</h4>
                     <p className="text-lg md:text-xl text-white/70 font-light leading-relaxed">
                       {selectedService.detail}
                     </p>
                   </div>
 
                   <div>
-                    <h4 className="text-[10px] font-bold text-white/20 uppercase tracking-[0.2em] mb-4">Protocolos de Ejecución</h4>
+                    <h4 className="text-[10px] font-bold text-white/20 uppercase tracking-[0.2em] mb-4">Lo que incluimos</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {selectedService.protocols.map((protocol, i) => (
                         <div key={i} className="flex items-center gap-3 p-4 bg-white/[0.02] border border-white/5 rounded-2xl">
@@ -200,7 +200,7 @@ const Services = () => {
                       onClick={() => setSelectedService(null)}
                       className="w-full md:w-auto px-10 py-5 bg-cyber-blue text-black font-black rounded-2xl text-[10px] uppercase tracking-[0.2em] hover:scale-105 transition-all shadow-[0_20px_40px_rgba(16,185,129,0.2)]"
                     >
-                      Solicitar Protocolo
+                      Pedir información
                     </button>
                   </div>
                 </div>

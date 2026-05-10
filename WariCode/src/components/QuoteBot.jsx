@@ -8,13 +8,13 @@ const apiKey = import.meta.env.VITE_GEMINI_KEY;
 const genAI = new GoogleGenerativeAI(apiKey || "");
 const model = genAI.getGenerativeModel({ 
   model: "gemini-flash-latest",
-  systemInstruction: "Eres WARI AI, la inteligencia artificial central de 'WariCode', una firma de ingeniería de software de alto nivel. Tu tono es: Tecnológico, Profesional, Directo y Elegante. Tus capacidades: Explicar servicios de WariCode (Ecommerce, Web Master, Interfaces de Lujo, IA), dar consejos técnicos y guiar a nuevos clientes. Contexto: WariCode crea software que 'define el futuro de las industrias'. Responde de forma concisa. Usa un lenguaje que proyecte autoridad técnica."
+  systemInstruction: "Eres WARI AI, el asistente virtual de 'WariCode'. Tu tono es: Amigable, Profesional, Claro y Ayudador. Tus capacidades: Explicar de forma sencilla los servicios de WariCode (Tiendas Online, Páginas Web, Diseño de Lujo, Inteligencia Artificial), dar consejos útiles para negocios y guiar a nuevos clientes que no saben nada de programación. Contexto: WariCode crea herramientas digitales que ayudan a los negocios a crecer. Responde de forma concisa y evita tecnicismos innecesarios."
 });
 
 const QuoteBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: 'ai', text: 'Bienvenido a WariCode. Soy WARI AI, su consultor de ingeniería de alto impacto. ¿Cómo puedo asistir en el desarrollo de su visión tecnológica hoy?' }
+    { role: 'ai', text: '¡Hola! Bienvenido a WariCode. Soy WARI AI, tu asistente personal. ¿Tienes alguna idea en mente para tu negocio? Estoy aquí para ayudarte a hacerla realidad.' }
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -52,8 +52,8 @@ const QuoteBot = () => {
       setMessages(prev => [...prev, { role: 'ai', text: text }]);
     } catch (error) {
       console.error("WARI_AI_ERROR:", error);
-      const errorMsg = error.message || "Falla en la sincronización neural.";
-      setMessages(prev => [...prev, { role: 'ai', text: `ERROR_SISTEMA: ${errorMsg}` }]);
+      const errorMsg = "Lo siento, hubo un error al conectar. Por favor intenta de nuevo.";
+      setMessages(prev => [...prev, { role: 'ai', text: `UPS: ${errorMsg}` }]);
     } finally {
       setIsLoading(false);
     }
@@ -85,10 +85,10 @@ const QuoteBot = () => {
                   <Sparkles size={16} className="text-cyber-blue" />
                 </div>
                 <div>
-                  <h4 className="text-[11px] font-black text-white uppercase tracking-tighter">WARI_AI</h4>
+                  <h4 className="text-[11px] font-black text-white uppercase tracking-tighter">WARI_ASISTENTE</h4>
                   <div className="flex items-center gap-1">
                     <div className="w-1 h-1 rounded-full bg-cyber-blue animate-pulse" />
-                    <span className="text-[7px] text-cyber-blue font-bold uppercase tracking-widest">Memoria_Activa</span>
+                    <span className="text-[7px] text-cyber-blue font-bold uppercase tracking-widest">En línea</span>
                   </div>
                 </div>
               </div>
@@ -132,7 +132,7 @@ const QuoteBot = () => {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  placeholder="Inyectar consulta..."
+                  placeholder="Escribe tu pregunta aquí..."
                   className="flex-1 bg-white/[0.03] border border-white/10 rounded-xl py-2.5 px-4 text-[11px] text-white focus:outline-none focus:border-cyber-blue/30 transition-all"
                 />
                 <button

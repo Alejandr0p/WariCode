@@ -58,7 +58,7 @@ const Hero = () => {
             className="mb-12 flex items-center justify-center gap-4"
           >
             <div className="h-[1px] w-12 bg-cyber-blue/40" />
-            <span className="text-[10px] font-mono font-bold tracking-[1em] text-cyber-blue uppercase">System.Initialize()</span>
+            <span className="text-[10px] font-mono font-bold tracking-[1em] text-cyber-blue uppercase">WariCode.Bienvenido()</span>
             <div className="h-[1px] w-12 bg-cyber-blue/40" />
           </motion.div>
           
@@ -84,7 +84,7 @@ const Hero = () => {
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-8 md:mb-12 px-4">
               <span className="text-white/20 text-[10px] font-mono hidden md:block">0x001_A</span>
               <p className="text-white/40 text-sm md:text-xl font-light uppercase tracking-[0.3em] md:tracking-[0.5em] border-l-2 md:border-l border-cyber-blue/30 pl-4 md:pl-6 text-center md:text-left">
-                Ingeniería de <span className="text-white font-bold">Software</span> <br className="md:hidden" /> de Alto Nivel
+                Creamos tu <span className="text-white font-bold">Presencia Digital</span> <br className="md:hidden" /> de Alto Impacto
               </p>
             </div>
 
@@ -98,7 +98,7 @@ const Hero = () => {
               whileTap={{ scale: 0.95 }}
               className="px-12 py-5 border border-cyber-blue/30 text-cyber-blue font-mono text-[11px] uppercase tracking-[0.5em] transition-all relative overflow-hidden group"
             >
-              <span className="relative z-10">[ EXECUTE_DEPLOY ]</span>
+              <span className="relative z-10">[ EMPEZAR PROYECTO ]</span>
               <motion.div 
                 className="absolute inset-0 bg-cyber-blue translate-y-full group-hover:translate-y-0 transition-transform duration-300"
               />

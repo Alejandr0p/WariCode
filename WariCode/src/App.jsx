@@ -36,10 +36,10 @@ const App = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   className="matrix-card p-8 md:p-12 border-none"
                 >
-                  <span className="text-cyber-blue font-bold tracking-[0.5em] text-[8px] md:text-[10px] mb-4 md:mb-6 block uppercase">PROTOCOL_01</span>
-                  <h3 className="text-2xl md:text-3xl font-black mb-4 md:mb-6 tracking-tighter text-white">[ MISIÓN_ESTRATÉGICA ]</h3>
+                  <span className="text-cyber-blue font-bold tracking-[0.5em] text-[8px] md:text-[10px] mb-4 md:mb-6 block uppercase">NUESTRA MISIÓN</span>
+                  <h3 className="text-2xl md:text-3xl font-black mb-4 md:mb-6 tracking-tighter text-white">[ TU ÉXITO DIGITAL ]</h3>
                   <p className="text-white/40 leading-relaxed text-sm md:text-base font-light">
-                    Sincronizar la visión del cliente con arquitecturas de software inquebrantables.
+                    Hacer realidad tus ideas con tecnología de alta calidad, potente y fácil de usar.
                   </p>
                 </motion.div>
 
@@ -48,10 +48,10 @@ const App = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   className="matrix-card p-8 md:p-12 border-none border-t md:border-t-0 md:border-l border-cyber-blue/10"
                 >
-                  <span className="text-cyber-blue font-bold tracking-[0.5em] text-[8px] md:text-[10px] mb-4 md:mb-6 block uppercase">PROTOCOL_02</span>
-                  <h3 className="text-2xl md:text-3xl font-black mb-4 md:mb-6 tracking-tighter text-white">[ VISIÓN_SISTÉMICA ]</h3>
+                  <span className="text-cyber-blue font-bold tracking-[0.5em] text-[8px] md:text-[10px] mb-4 md:mb-6 block uppercase">NUESTRA VISIÓN</span>
+                  <h3 className="text-2xl md:text-3xl font-black mb-4 md:mb-6 tracking-tighter text-white">[ INNOVACIÓN CONSTANTE ]</h3>
                   <p className="text-white/40 leading-relaxed text-sm md:text-base font-light">
-                    Ser el sistema operativo de la innovación global, donde cada desafío digital encuentre su resolución.
+                    Ser el aliado número uno para que cualquier negocio crezca y destaque en el mundo digital.
                   </p>
                 </motion.div>
               </div>
@@ -60,15 +60,40 @@ const App = () => {
 
           <Services />
           
+          {/* Featured Projects Marquee */}
+          <section className="py-10 md:py-20 bg-white/[0.01] border-y border-white/5 overflow-hidden">
+            <div className="flex flex-col gap-8 md:gap-12">
+              <div className="container mx-auto px-6 text-center">
+                <span className="text-cyber-blue font-bold tracking-[0.3em] text-[8px] md:text-[10px] uppercase">Lo que podemos crear para tu negocio</span>
+              </div>
+              <div className="flex overflow-hidden group select-none">
+                <div className="flex items-center gap-12 md:gap-24 animate-marquee whitespace-nowrap py-4">
+                  {['VENDER POR INTERNET', 'TU PÁGINA PERSONAL', 'PÁGINA PARA TU NEGOCIO', 'TU ESCUELA ONLINE', 'SISTEMA DE VENTAS', 'TU MARCA PROFESIONAL', 'CATÁLOGO DE PRODUCTOS', 'RESERVAS POR INTERNET', 'TU BLOG PERSONAL', 'MENÚ DIGITAL', 'TARJETA WEB', 'GALERÍA DE FOTOS', 'PÁGINA PARA EVENTOS', 'SISTEMA DE PAGOS', 'TU PORTAFOLIO', 'ACADEMIA DIGITAL', 'CITAS ONLINE', 'TIENDA DE ROPA', 'PÁGINA PARA TU RESTAURANTE', 'TU CV DIGITAL'].map((type, i) => (
+                    <span key={i} className="text-2xl md:text-5xl font-black text-white/10 group-hover:text-cyber-blue/40 transition-colors tracking-tighter uppercase">
+                      {type}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex items-center gap-12 md:gap-24 animate-marquee whitespace-nowrap py-4">
+                  {['VENDER POR INTERNET', 'TU PÁGINA PERSONAL', 'PÁGINA PARA TU NEGOCIO', 'TU ESCUELA ONLINE', 'SISTEMA DE VENTAS', 'TU MARCA PROFESIONAL', 'CATÁLOGO DE PRODUCTOS', 'RESERVAS POR INTERNET', 'TU BLOG PERSONAL', 'MENÚ DIGITAL', 'TARJETA WEB', 'GALERÍA DE FOTOS', 'PÁGINA PARA EVENTOS', 'SISTEMA DE PAGOS', 'TU PORTAFOLIO', 'ACADEMIA DIGITAL', 'CITAS ONLINE', 'TIENDA DE ROPA', 'PÁGINA PARA TU RESTAURANTE', 'TU CV DIGITAL'].map((type, i) => (
+                    <span key={i} className="text-2xl md:text-5xl font-black text-white/10 group-hover:text-cyber-blue/40 transition-colors tracking-tighter uppercase">
+                      {type}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+          
           {/* Core Processing Nodes (Nosotros) */}
           <section id="nosotros" className="py-12 md:py-20 relative overflow-hidden">
             <div className="container mx-auto px-6">
               <div className="text-center mb-10 md:mb-16 relative">
                 <h2 className="text-4xl md:text-7xl font-black tracking-tighter mb-4 text-white uppercase relative z-10">
-                  CORE_<span className="text-gradient">NODES</span>
+                  NUESTRO_<span className="text-gradient">EQUIPO</span>
                 </h2>
                 <div className="flex items-center justify-center gap-2 md:gap-4 text-cyber-blue text-[8px] md:text-[10px] font-bold tracking-[0.5em] md:tracking-[1em] uppercase opacity-50">
-                  Sincronía Humana // Protocolo UNI
+                  Expertos a tu servicio // Talento UNI
                 </div>
               </div>
               
@@ -76,17 +101,17 @@ const App = () => {
                 {[
                   { 
                     name: 'LEONARDO', 
-                    node: 'NODE_001', 
-                    role: 'SYSTEM_ARCHITECT',
-                    bio: 'Especialista en arquitecturas distribuidas de alta resiliencia.',
+                    node: 'FUNDADOR', 
+                    role: 'ARQUITECTO DE SOFTWARE',
+                    bio: 'Experto en crear sistemas potentes y seguros que nunca fallan.',
                     ig: '@lk_leao',
                     link: 'https://www.instagram.com/lk_leao/'
                   },
                   { 
                     name: 'ALEJANDRO', 
-                    node: 'NODE_002', 
-                    role: 'UX_STRATEGIST',
-                    bio: 'Maestro en el diseño de flujos cognitivos y reactivos.',
+                    node: 'CO-FUNDADOR', 
+                    role: 'DISEÑADOR DE EXPERIENCIAS',
+                    bio: 'Especialista en crear páginas hermosas, rápidas y fáciles de navegar.',
                     ig: '@alejan_droo07',
                     link: 'https://www.instagram.com/alejan_droo07/'
                   }
