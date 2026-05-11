@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send } from 'lucide-react';
 
+<<<<<<< HEAD
 const WhatsAppBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
@@ -13,6 +14,62 @@ const WhatsAppBot = () => {
     window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
     setMessage('');
     setIsOpen(false);
+=======
+// Configuración de Gemini segura mediante variables de entorno
+const apiKey = import.meta.env.VITE_GEMINI_KEY;
+const genAI = new GoogleGenerativeAI(apiKey || "");
+const model = genAI.getGenerativeModel({ 
+  model: "gemini-flash-latest",
+  systemInstruction: "Eres WARI AI, el asistente virtual de 'WariCode'. Tu tono es: Amigable, Profesional, Claro y Ayudador. Tus capacidades: Explicar de forma sencilla los servicios de WariCode (Tiendas Online, Páginas Web, Diseño de Lujo, Inteligencia Artificial), dar consejos útiles para negocios y guiar a nuevos clientes que no saben nada de programación. Contexto: WariCode crea herramientas digitales que ayudan a los negocios a crecer. Responde de forma concisa y evita tecnicismos innecesarios."
+});
+
+const QuoteBot = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    { role: 'ai', text: '¡Hola! Bienvenido a WariCode. Soy WARI AI, tu asistente personal. ¿Tienes alguna idea en mente para tu negocio? Estoy aquí para ayudarte a hacerla realidad.' }
+  ]);
+  const [inputValue, setInputValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const chatEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    if (isOpen) scrollToBottom();
+  }, [messages, isOpen]);
+
+  const handleSendMessage = async () => {
+    if (!inputValue.trim() || isLoading) return;
+
+    const userText = inputValue;
+    const newMessages = [...messages, { role: 'user', text: userText }];
+    setMessages(newMessages);
+    setInputValue('');
+    setIsLoading(true);
+
+    try {
+      // Configurar el historial para Gemini (omitiendo el saludo inicial de la IA)
+      const history = messages.slice(1).map(msg => ({
+        role: msg.role === 'user' ? 'user' : 'model',
+        parts: [{ text: msg.text }],
+      }));
+
+      const chat = model.startChat({ history });
+      const result = await chat.sendMessage(userText);
+      const response = await result.response;
+      const text = response.text();
+
+      setMessages(prev => [...prev, { role: 'ai', text: text }]);
+    } catch (error) {
+      console.error("WARI_AI_ERROR:", error);
+      const errorMsg = "Lo siento, hubo un error al conectar. Por favor intenta de nuevo.";
+      setMessages(prev => [...prev, { role: 'ai', text: `UPS: ${errorMsg}` }]);
+    } finally {
+      setIsLoading(false);
+    }
+>>>>>>> ef9ca63ff6343cf57ff524e8aad3cc0d48617bdc
   };
 
   return (
@@ -41,10 +98,17 @@ const WhatsAppBot = () => {
                   <MessageCircle size={20} className="text-white" />
                 </div>
                 <div>
+<<<<<<< HEAD
                   <h4 className="text-sm font-semibold">WariCode Asesor</h4>
                   <div className="flex items-center gap-1.5 mt-0.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                     <span className="text-[11px] text-green-50 font-medium">En línea</span>
+=======
+                  <h4 className="text-[11px] font-black text-white uppercase tracking-tighter">WARI_ASISTENTE</h4>
+                  <div className="flex items-center gap-1">
+                    <div className="w-1 h-1 rounded-full bg-cyber-blue animate-pulse" />
+                    <span className="text-[7px] text-cyber-blue font-bold uppercase tracking-widest">En línea</span>
+>>>>>>> ef9ca63ff6343cf57ff524e8aad3cc0d48617bdc
                   </div>
                 </div>
               </div>
@@ -71,11 +135,19 @@ const WhatsAppBot = () => {
               <div className="relative flex items-center gap-3">
                 <input
                   type="text"
+<<<<<<< HEAD
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                   placeholder="Escribe tu mensaje..."
                   className="flex-1 bg-slate-50 border border-slate-100 rounded-full py-3 px-5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#25D366]/30 transition-all"
+=======
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                  placeholder="Escribe tu pregunta aquí..."
+                  className="flex-1 bg-white/[0.03] border border-white/10 rounded-xl py-2.5 px-4 text-[11px] text-white focus:outline-none focus:border-cyber-blue/30 transition-all"
+>>>>>>> ef9ca63ff6343cf57ff524e8aad3cc0d48617bdc
                 />
                 <button
                   onClick={handleSend}

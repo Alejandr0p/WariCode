@@ -17,9 +17,15 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             className="mb-8 flex items-center justify-center"
           >
+<<<<<<< HEAD
             <span className="text-xs md:text-sm font-semibold tracking-wider text-[#1E3A8A] uppercase bg-white px-5 py-2 rounded-full apple-shadow border border-[#E2E8F0]">
               Impulsa tu negocio digital
             </span>
+=======
+            <div className="h-[1px] w-12 bg-cyber-blue/40" />
+            <span className="text-[10px] font-mono font-bold tracking-[1em] text-cyber-blue uppercase">WariCode.Bienvenido()</span>
+            <div className="h-[1px] w-12 bg-cyber-blue/40" />
+>>>>>>> ef9ca63ff6343cf57ff524e8aad3cc0d48617bdc
           </motion.div>
           
           <motion.h1 
@@ -47,11 +53,22 @@ const Hero = () => {
             transition={{ delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
+<<<<<<< HEAD
+=======
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-8 md:mb-12 px-4">
+              <span className="text-white/20 text-[10px] font-mono hidden md:block">0x001_A</span>
+              <p className="text-white/40 text-sm md:text-xl font-light uppercase tracking-[0.3em] md:tracking-[0.5em] border-l-2 md:border-l border-cyber-blue/30 pl-4 md:pl-6 text-center md:text-left">
+                Creamos tu <span className="text-white font-bold">Presencia Digital</span> <br className="md:hidden" /> de Alto Impacto
+              </p>
+            </div>
+
+>>>>>>> ef9ca63ff6343cf57ff524e8aad3cc0d48617bdc
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="w-full sm:w-auto px-8 py-4 bg-[#1E3A8A] text-white font-medium rounded-2xl text-sm transition-all apple-shadow flex items-center justify-center gap-2"
             >
+<<<<<<< HEAD
               Empezar ahora <ArrowRight size={18} />
             </motion.button>
             <motion.button
@@ -60,6 +77,12 @@ const Hero = () => {
               className="w-full sm:w-auto px-8 py-4 bg-white text-[#0A2540] hover:bg-slate-50 font-medium rounded-2xl border border-slate-200 text-sm transition-all apple-shadow"
             >
               Ver Proyectos
+=======
+              <span className="relative z-10">[ EMPEZAR PROYECTO ]</span>
+              <motion.div 
+                className="absolute inset-0 bg-cyber-blue translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+              />
+>>>>>>> ef9ca63ff6343cf57ff524e8aad3cc0d48617bdc
             </motion.button>
           </motion.div>
         </div>

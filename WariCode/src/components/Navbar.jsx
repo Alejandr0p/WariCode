@@ -33,6 +33,11 @@ const Navbar = () => {
         
         <div className="hidden md:flex items-center gap-8">
           {[
+<<<<<<< HEAD
+=======
+            { name: 'Misión', id: 'protocolos' },
+            { name: 'Servicios', id: 'servicios' },
+>>>>>>> ef9ca63ff6343cf57ff524e8aad3cc0d48617bdc
             { name: 'Nosotros', id: 'nosotros' },
             { name: 'Servicios', id: 'servicios' },
             { name: 'Portafolio', id: 'portafolio' },
@@ -50,7 +55,11 @@ const Navbar = () => {
             whileTap={{ scale: 0.98 }}
             className="px-5 py-2 bg-[#1E3A8A] text-white font-medium rounded-full text-sm transition-all apple-shadow"
           >
+<<<<<<< HEAD
             Contáctanos
+=======
+            Contacto
+>>>>>>> ef9ca63ff6343cf57ff524e8aad3cc0d48617bdc
           </motion.button>
         </div>
 
@@ -76,6 +85,11 @@ const Navbar = () => {
             <div className="flex flex-col gap-6 text-center">
               {[
                 { name: 'Inicio', id: 'inicio' },
+<<<<<<< HEAD
+=======
+                { name: 'Misión', id: 'protocolos' },
+                { name: 'Servicios', id: 'servicios' },
+>>>>>>> ef9ca63ff6343cf57ff524e8aad3cc0d48617bdc
                 { name: 'Nosotros', id: 'nosotros' },
                 { name: 'Servicios', id: 'servicios' },
                 { name: 'Portafolio', id: 'portafolio' }
