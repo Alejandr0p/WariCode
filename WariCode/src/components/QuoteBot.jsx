@@ -8,7 +8,7 @@ const WhatsAppBot = () => {
 
   const handleSend = () => {
     if (!message.trim()) return;
-    const phone = "51999999999"; // Replace with real phone number
+    const phone = "51943836076"; 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
     setMessage('');

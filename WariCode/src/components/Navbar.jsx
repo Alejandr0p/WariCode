@@ -6,6 +6,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const WHATSAPP_URL = "https://wa.me/51943836076?text=Saludos%20equipo%20de%20WariCode.%20He%20revisado%20su%20plataforma%20y%20estoy%20interesado%20en%20solicitar%20una%20consultor%C3%ADa%20profesional%20para%20un%20nuevo%20proyecto%20digital.%20Quedo%20atento%20a%20su%20respuesta.";
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -46,13 +48,16 @@ const Navbar = () => {
               {item.name}
             </a>
           ))}
-          <motion.button 
+          <motion.a 
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="px-5 py-2 bg-[#1E3A8A] text-white font-medium rounded-full text-sm transition-all apple-shadow"
           >
             Contáctanos
-          </motion.button>
+          </motion.a>
         </div>
 
         <div className="md:hidden">
@@ -91,9 +96,14 @@ const Navbar = () => {
                   {item.name}
                 </a>
               ))}
-              <button className="w-full mt-4 bg-[#1E3A8A] text-white px-5 py-4 rounded-2xl font-medium flex items-center justify-center gap-2 apple-shadow">
+              <a 
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full mt-4 bg-[#1E3A8A] text-white px-5 py-4 rounded-2xl font-medium flex items-center justify-center gap-2 apple-shadow"
+              >
                 Empezar Proyecto <ArrowRight size={18} />
-              </button>
+              </a>
             </div>
           </motion.div>
         )}
