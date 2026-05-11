@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code2, Menu, X, Rocket } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +8,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -19,47 +19,45 @@ const Navbar = () => {
       <motion.nav 
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className={`pointer-events-auto transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+        className={`pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${
           scrolled 
-            ? 'w-[680px] bg-black/80 backdrop-blur-2xl border border-white/10 py-3 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.5)]' 
+            ? 'w-full md:w-[700px] bg-white/70 backdrop-blur-2xl border border-black/5 py-3 md:rounded-full apple-shadow' 
             : 'w-full max-w-6xl bg-transparent py-4 rounded-none'
-        } flex items-center justify-between px-10`}
+        } flex items-center justify-between px-6 md:px-8`}
       >
         <a href="#inicio" className="flex items-center gap-2 group cursor-pointer">
-          <div className="w-1.5 h-1.5 rounded-full bg-cyber-blue shadow-[0_0_10px_#10B981] group-hover:scale-125 transition-transform" />
-          <span className="text-lg font-black tracking-tighter text-white">
-            WariCode<span className="text-cyber-blue">.</span>
+          <span className="text-xl font-bold tracking-tight text-[#0A2540]">
+            WariCode<span className="text-[#3B82F6]">.</span>
           </span>
         </a>
         
         <div className="hidden md:flex items-center gap-8">
           {[
-            { name: 'Protocolos', id: 'protocolos' },
-            { name: 'Servicios', id: 'servicios' },
             { name: 'Nosotros', id: 'nosotros' },
-            { name: 'Contacto', id: 'contacto' }
+            { name: 'Servicios', id: 'servicios' },
+            { name: 'Portafolio', id: 'portafolio' },
           ].map((item) => (
             <a
               key={item.name}
               href={`#${item.id}`}
-              className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/40 hover:text-white transition-all"
+              className="text-sm font-medium text-slate-500 hover:text-[#0A2540] transition-colors"
             >
               {item.name}
             </a>
           ))}
           <motion.button 
-            whileHover={{ scale: 1.05, backgroundColor: '#10B981', color: '#000' }}
-            whileTap={{ scale: 0.95 }}
-            className="px-6 py-2 bg-white/[0.03] border border-white/10 text-white font-bold rounded-full text-[8px] uppercase tracking-widest transition-all"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="px-5 py-2 bg-[#1E3A8A] text-white font-medium rounded-full text-sm transition-all apple-shadow"
           >
-            Sincronizar
+            Contáctanos
           </motion.button>
         </div>
 
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-white p-2"
+            className="text-[#0A2540] p-2"
           >
             {isOpen ? <X /> : <Menu />}
           </button>
@@ -70,31 +68,29 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="md:hidden absolute top-24 left-4 right-4 glass rounded-3xl p-8 pointer-events-auto"
+            exit={{ opacity: 0, scale: 0.95, y: -20 }}
+            className="md:hidden absolute top-20 left-4 right-4 bg-white/95 backdrop-blur-xl border border-black/5 rounded-3xl p-8 pointer-events-auto apple-shadow-lg"
           >
             <div className="flex flex-col gap-6 text-center">
               {[
                 { name: 'Inicio', id: 'inicio' },
-                { name: 'Protocolos', id: 'protocolos' },
-                { name: 'Servicios', id: 'servicios' },
                 { name: 'Nosotros', id: 'nosotros' },
-                { name: 'Contacto', id: 'contacto' }
+                { name: 'Servicios', id: 'servicios' },
+                { name: 'Portafolio', id: 'portafolio' }
               ].map((item) => (
                 <a
                   key={item.name}
                   href={`#${item.id}`}
-                  className="text-2xl font-heading font-bold text-white hover:text-cyber-blue"
+                  className="text-xl font-bold text-[#0A2540] hover:text-[#3B82F6] transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
                 </a>
               ))}
-              <button className="w-full mt-4 bg-cyber-blue text-white px-5 py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
-                <Rocket size={20} />
-                Empezar Proyecto
+              <button className="w-full mt-4 bg-[#1E3A8A] text-white px-5 py-4 rounded-2xl font-medium flex items-center justify-center gap-2 apple-shadow">
+                Empezar Proyecto <ArrowRight size={18} />
               </button>
             </div>
           </motion.div>

@@ -1,73 +1,29 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bot, Send, X, Sparkles, Loader2 } from 'lucide-react';
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { MessageCircle, X, Send } from 'lucide-react';
 
-// Configuración de Gemini segura mediante variables de entorno
-const apiKey = import.meta.env.VITE_GEMINI_KEY;
-const genAI = new GoogleGenerativeAI(apiKey || "");
-const model = genAI.getGenerativeModel({ 
-  model: "gemini-flash-latest",
-  systemInstruction: "Eres WARI AI, la inteligencia artificial central de 'WariCode', una firma de ingeniería de software de alto nivel. Tu tono es: Tecnológico, Profesional, Directo y Elegante. Tus capacidades: Explicar servicios de WariCode (Ecommerce, Web Master, Interfaces de Lujo, IA), dar consejos técnicos y guiar a nuevos clientes. Contexto: WariCode crea software que 'define el futuro de las industrias'. Responde de forma concisa. Usa un lenguaje que proyecte autoridad técnica."
-});
-
-const QuoteBot = () => {
+const WhatsAppBot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { role: 'ai', text: 'Bienvenido a WariCode. Soy WARI AI, su consultor de ingeniería de alto impacto. ¿Cómo puedo asistir en el desarrollo de su visión tecnológica hoy?' }
-  ]);
-  const [inputValue, setInputValue] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const chatEndRef = useRef(null);
+  const [message, setMessage] = useState('');
 
-  const scrollToBottom = () => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    if (isOpen) scrollToBottom();
-  }, [messages, isOpen]);
-
-  const handleSendMessage = async () => {
-    if (!inputValue.trim() || isLoading) return;
-
-    const userText = inputValue;
-    const newMessages = [...messages, { role: 'user', text: userText }];
-    setMessages(newMessages);
-    setInputValue('');
-    setIsLoading(true);
-
-    try {
-      // Configurar el historial para Gemini (omitiendo el saludo inicial de la IA)
-      const history = messages.slice(1).map(msg => ({
-        role: msg.role === 'user' ? 'user' : 'model',
-        parts: [{ text: msg.text }],
-      }));
-
-      const chat = model.startChat({ history });
-      const result = await chat.sendMessage(userText);
-      const response = await result.response;
-      const text = response.text();
-
-      setMessages(prev => [...prev, { role: 'ai', text: text }]);
-    } catch (error) {
-      console.error("WARI_AI_ERROR:", error);
-      const errorMsg = error.message || "Falla en la sincronización neural.";
-      setMessages(prev => [...prev, { role: 'ai', text: `ERROR_SISTEMA: ${errorMsg}` }]);
-    } finally {
-      setIsLoading(false);
-    }
+  const handleSend = () => {
+    if (!message.trim()) return;
+    const phone = "51999999999"; // Replace with real phone number
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
+    setMessage('');
+    setIsOpen(false);
   };
 
   return (
     <>
       <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 p-3.5 bg-white text-black rounded-2xl shadow-xl border border-white/20"
+        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 p-4 bg-[#25D366] text-white rounded-full apple-shadow-lg"
       >
-        {isOpen ? <X size={20} /> : <Bot size={20} />}
+        {isOpen ? <X size={24} /> : <MessageCircle size={28} />}
       </motion.button>
 
       <AnimatePresence>
@@ -76,71 +32,56 @@ const QuoteBot = () => {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-20 right-4 md:right-6 z-50 w-[92vw] md:w-[320px] h-[480px] bg-[#050505] rounded-2xl overflow-hidden border border-white/10 flex flex-col shadow-2xl"
+            className="fixed bottom-24 right-4 md:right-8 z-50 w-[92vw] md:w-[340px] bg-white rounded-3xl overflow-hidden apple-shadow-lg border border-black/5"
           >
             {/* Header */}
-            <div className="p-4 bg-white/[0.02] flex items-center justify-between border-b border-white/5">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-cyber-blue/10 flex items-center justify-center border border-cyber-blue/20">
-                  <Sparkles size={16} className="text-cyber-blue" />
+            <div className="p-5 bg-[#25D366] text-white flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                  <MessageCircle size={20} className="text-white" />
                 </div>
                 <div>
-                  <h4 className="text-[11px] font-black text-white uppercase tracking-tighter">WARI_AI</h4>
-                  <div className="flex items-center gap-1">
-                    <div className="w-1 h-1 rounded-full bg-cyber-blue animate-pulse" />
-                    <span className="text-[7px] text-cyber-blue font-bold uppercase tracking-widest">Memoria_Activa</span>
+                  <h4 className="text-sm font-semibold">WariCode Asesor</h4>
+                  <div className="flex items-center gap-1.5 mt-0.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                    <span className="text-[11px] text-green-50 font-medium">En línea</span>
                   </div>
                 </div>
               </div>
               <button 
                 onClick={() => setIsOpen(false)} 
-                className="text-white/60 hover:text-white p-1.5 hover:bg-white/10 rounded-lg transition-all"
+                className="text-white/80 hover:text-white p-1.5 hover:bg-white/10 rounded-full transition-all"
               >
-                <X size={18} />
+                <X size={20} />
               </button>
             </div>
 
             {/* Chat Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] bg-fixed">
-              {messages.map((msg, i) => (
-                <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[85%] p-3 rounded-xl text-[11px] leading-relaxed ${
-                    msg.role === 'user' 
-                      ? 'bg-cyber-blue text-black font-bold rounded-tr-none' 
-                      : 'bg-white/[0.05] text-white/90 border border-white/5 rounded-tl-none backdrop-blur-md'
-                  }`}>
-                    {msg.text}
-                  </div>
-                </div>
-              ))}
-              {isLoading && (
-                <div className="flex justify-start">
-                  <div className="bg-white/[0.03] p-3 rounded-xl border border-white/5 flex items-center gap-2">
-                    <Loader2 size={12} className="animate-spin text-cyber-blue" />
-                    <span className="text-[8px] text-white/20 font-bold uppercase">Procesando...</span>
-                  </div>
-                </div>
-              )}
-              <div ref={chatEndRef} />
+            <div className="p-6 bg-[#FAFAFC]">
+              <div className="bg-white p-4 rounded-2xl rounded-tl-none apple-shadow max-w-[90%] mb-2">
+                <p className="text-slate-700 text-sm leading-relaxed">
+                  ¡Hola! 👋 Soy asesor de WariCode. ¿Te gustaría tener una web elegante o automatizar tu negocio?
+                </p>
+                <span className="text-[10px] text-slate-400 block mt-2 text-right font-medium">Ahora</span>
+              </div>
             </div>
 
             {/* Input Area */}
-            <div className="p-4 border-t border-white/5 bg-black">
-              <div className="relative flex items-center gap-2">
+            <div className="p-4 bg-white border-t border-slate-100">
+              <div className="relative flex items-center gap-3">
                 <input
                   type="text"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  placeholder="Inyectar consulta..."
-                  className="flex-1 bg-white/[0.03] border border-white/10 rounded-xl py-2.5 px-4 text-[11px] text-white focus:outline-none focus:border-cyber-blue/30 transition-all"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                  placeholder="Escribe tu mensaje..."
+                  className="flex-1 bg-slate-50 border border-slate-100 rounded-full py-3 px-5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#25D366]/30 transition-all"
                 />
                 <button
-                  onClick={handleSendMessage}
-                  disabled={isLoading}
-                  className="w-10 h-10 bg-white text-black rounded-xl flex items-center justify-center hover:bg-cyber-blue transition-all disabled:opacity-50"
+                  onClick={handleSend}
+                  className="w-11 h-11 bg-[#25D366] text-white rounded-full flex items-center justify-center hover:bg-[#20bd5b] transition-all apple-shadow"
                 >
-                  <Send size={16} />
+                  <Send size={18} className="ml-1" />
                 </button>
               </div>
             </div>
@@ -151,4 +92,4 @@ const QuoteBot = () => {
   );
 };
 
-export default QuoteBot;
+export default WhatsAppBot;

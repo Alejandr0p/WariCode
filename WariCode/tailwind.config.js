@@ -8,16 +8,16 @@ export default {
     extend: {
       colors: {
         raven: {
-          950: '#000000', // Matrix Black
-          900: '#050505',
-          800: '#0A0A0A',
+          950: '#F8FAFC', // Light Background
+          900: '#F1F5F9', // Slightly darker light background
+          800: '#E2E8F0', // Borders
         },
         cyber: {
-          blue: '#10B981', // Deep Emerald
-          purple: '#059669', // Matrix Green
-          cyan: '#34D399',
-          white: '#FFFFFF',
-          glass: 'rgba(16, 185, 129, 0.05)',
+          blue: '#1E3A8A', // Deep Navy Blue
+          purple: '#2563EB', // Royal Blue
+          cyan: '#3B82F6', // Lighter Blue Accent
+          white: '#0B192C', // Using "white" name for text-white replacements, making it dark navy
+          glass: 'rgba(30, 58, 138, 0.05)',
         }
       },
       fontFamily: {
@@ -32,8 +32,8 @@ export default {
       },
       keyframes: {
         glow: {
-          '0%': { boxShadow: '0 0 5px rgba(0, 163, 255, 0.2)' },
-          '100%': { boxShadow: '0 0 20px rgba(0, 163, 255, 0.5)' },
+          '0%': { boxShadow: '0 0 5px rgba(30, 58, 138, 0.1)' },
+          '100%': { boxShadow: '0 0 20px rgba(30, 58, 138, 0.3)' },
         },
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
