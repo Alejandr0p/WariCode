@@ -9,8 +9,8 @@ const services = [
     desc: "Tu propia página donde tus pacientes pueden agendar sus citas fácilmente desde su celular.",
     detail: "Creamos un sistema donde tus pacientes ven tus horarios disponibles y reservan en segundos. Te llega una notificación y listo, ¡olvídate de las llamadas interminables!",
     includes: ["Calendario inteligente", "Recordatorios por WhatsApp", "Ficha digital de pacientes"],
-    icon: <Heart className="w-8 h-8 text-rose-400" />,
-    color: "from-rose-50/80 to-pink-50/80",
+    icon: <Heart className="w-8 h-8 text-blue-400" />,
+    color: "from-white/90 to-blue-50/50",
     delay: 0.1
   },
   {
@@ -20,7 +20,7 @@ const services = [
     detail: "Administra tu gimnasio con total tranquilidad. Sabrás exactamente quién tiene la mensualidad al día y recibirás reportes de cuánto estás ganando mes a mes.",
     includes: ["Control de mensualidades", "Registro de asistencia", "Reportes de ventas"],
     icon: <Dumbbell className="w-8 h-8 text-blue-400" />,
-    color: "from-blue-50/80 to-indigo-50/80",
+    color: "from-white/90 to-blue-50/50",
     delay: 0.2
   },
   {
@@ -29,8 +29,8 @@ const services = [
     desc: "No pierdas la cuenta de tus medicinas. Un sistema fácil que te avisa qué falta.",
     detail: "Llevar el inventario de una botica puede ser difícil, pero con nuestro sistema es súper sencillo. Te avisamos cuando un producto se está agotando.",
     includes: ["Inventario automático", "Alerta de poco stock", "Cierre de caja fácil"],
-    icon: <Tablet className="w-8 h-8 text-emerald-400" />,
-    color: "from-emerald-50/80 to-teal-50/80",
+    icon: <Tablet className="w-8 h-8 text-blue-400" />,
+    color: "from-white/90 to-blue-50/50",
     delay: 0.3
   },
   {
@@ -39,8 +39,8 @@ const services = [
     desc: "Muestra tus productos a todo el mundo y recibe pagos por Yape automáticamente.",
     detail: "Llevamos tu negocio al mundo digital. Tus clientes podrán ver tu catálogo, elegir sus productos favoritos y pagarte al instante de forma segura.",
     includes: ["Catálogo de productos", "Pagos con Yape/Plin/Tarjeta", "Carrito de compras"],
-    icon: <ShoppingBag className="w-8 h-8 text-amber-400" />,
-    color: "from-amber-50/80 to-orange-50/80",
+    icon: <ShoppingBag className="w-8 h-8 text-blue-400" />,
+    color: "from-white/90 to-blue-50/50",
     delay: 0.4
   },
   {
@@ -49,8 +49,8 @@ const services = [
     desc: "Menú digital con QR y recepción de pedidos directamente a tu WhatsApp.",
     detail: "Tus clientes escanean el código, eligen sus platos favoritos y te envían el pedido listo por WhatsApp. ¡Agiliza tu atención y evita errores!",
     includes: ["Carta digital con QR", "Pedidos por WhatsApp", "Gestión de mesas"],
-    icon: <Star className="w-8 h-8 text-orange-400" />,
-    color: "from-orange-50/80 to-red-50/80",
+    icon: <Star className="w-8 h-8 text-blue-400" />,
+    color: "from-white/90 to-blue-50/50",
     delay: 0.5
   },
   {
@@ -59,8 +59,8 @@ const services = [
     desc: "Plataforma para subir notas, tareas y comunicados para los padres.",
     detail: "Moderniza tu institución educativa con un portal donde los padres ven el progreso de sus hijos y reciben noticias importantes al instante.",
     includes: ["Registro de notas", "Envío de tareas", "Avisos a padres"],
-    icon: <Cloud className="w-8 h-8 text-sky-400" />,
-    color: "from-sky-50/80 to-cyan-50/80",
+    icon: <Cloud className="w-8 h-8 text-blue-400" />,
+    color: "from-white/90 to-blue-50/50",
     delay: 0.6
   },
   {
@@ -69,8 +69,8 @@ const services = [
     desc: "Muestra tus departamentos y casas con galerías de fotos impresionantes.",
     detail: "Crea una vitrina digital de alto impacto para tus propiedades. Tus clientes podrán filtrar por precio, zona y contactarte en un clic.",
     includes: ["Galería de fotos HD", "Filtros de búsqueda", "Formulario de contacto"],
-    icon: <Sun className="w-8 h-8 text-yellow-400" />,
-    color: "from-yellow-50/80 to-amber-50/80",
+    icon: <Sun className="w-8 h-8 text-blue-400" />,
+    color: "from-white/90 to-blue-50/50",
     delay: 0.7
   },
   {
@@ -79,8 +79,8 @@ const services = [
     desc: "Sistema para organizar expedientes, clientes y plazos importantes.",
     detail: "Mantén el control de todos tus casos y documentos legales o contables de forma segura y organizada. Nunca más pierdas una fecha importante.",
     includes: ["Gestión de documentos", "Alertas de plazos", "Base de datos de clientes"],
-    icon: <Tablet className="w-8 h-8 text-indigo-400" />,
-    color: "from-indigo-50/80 to-violet-50/80",
+    icon: <Tablet className="w-8 h-8 text-blue-400" />,
+    color: "from-white/90 to-blue-50/50",
     delay: 0.8
   }
 ];
@@ -150,72 +150,129 @@ const Services = () => {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ 
-                delay: service.delay,
-                duration: 0.8,
-                type: "spring",
-                stiffness: 100
-              }}
-              whileHover={{ 
-                y: -15,
-                transition: { duration: 0.3 }
-              }}
+              transition={{ delay: service.delay, duration: 0.6 }}
               className="group relative"
             >
-              <div className={`h-full p-10 rounded-[3rem] bg-gradient-to-br ${service.color} backdrop-blur-xl border-4 border-white shadow-2xl shadow-blue-200/50 flex flex-col items-center text-center transition-all duration-300 group-hover:shadow-blue-300/60`}>
-                <div className="mb-8 p-6 rounded-full bg-white shadow-inner flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12">
-                  {service.icon}
+              {/* Card Container */}
+              <div 
+                onClick={() => setSelected(service)}
+                className="h-full cursor-pointer p-8 md:p-10 rounded-[3rem] bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_20px_50px_-15px_rgba(148,163,184,0.1)] flex flex-col items-center text-center transition-all duration-500 hover:bg-white/80 hover:shadow-blue-200/40 hover:-translate-y-3"
+              >
+                {/* Icon in Glass Bubble */}
+                <div className="relative mb-8">
+                  <div className="absolute inset-0 bg-blue-400/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="relative z-10 w-20 h-20 rounded-[2rem] bg-white shadow-xl shadow-blue-100/50 flex items-center justify-center text-blue-500 transition-all duration-500 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white">
+                    {React.cloneElement(service.icon, { size: 32 })}
+                  </div>
                 </div>
                 
-                <span className="text-[10px] font-bold text-blue-500 uppercase tracking-[0.2em] mb-2">{service.subtitle}</span>
-                <h3 className="text-2xl font-bold text-[#0A2540] mb-6">{service.title}</h3>
-                <p className="text-slate-500 leading-relaxed text-sm mb-8">
+                {/* Text Content */}
+                <span className="text-[10px] font-black text-blue-500/60 uppercase tracking-[0.3em] mb-2">{service.subtitle}</span>
+                <h3 className="text-2xl font-black text-[#0A2540] mb-4 tracking-tighter leading-tight">{service.title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed font-medium mb-8">
                   {service.desc}
                 </p>
                 
-                <button 
-                  onClick={() => setSelected(service)}
-                  className="mt-auto flex items-center gap-2 text-sm font-bold text-blue-600 group-hover:gap-4 transition-all"
-                >
-                  Saber más <ArrowRight size={18} />
-                </button>
-              </div>
+                {/* Action Link */}
+                <div className="mt-auto flex items-center gap-2 text-xs font-black text-blue-600 opacity-60 group-hover:opacity-100 group-hover:gap-4 transition-all duration-500">
+                  EXPLORAR <ArrowRight size={16} />
+                </div>
 
-              {/* Decorative Sparkle */}
-              <motion.div 
-                animate={{ opacity: [0, 1, 0], scale: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
-                className="absolute -top-2 -right-2 text-amber-400"
-              >
-                <Star size={20} fill="currentColor" />
-              </motion.div>
+                {/* Subtle Hover Glow Line at Bottom */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full transition-all duration-500 group-hover:w-1/2" />
+              </div>
             </motion.div>
           ))}
         </div>
 
         <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="mt-24 p-12 rounded-[4rem] bg-white border-4 border-blue-50 shadow-2xl shadow-blue-100/50 flex flex-col lg:flex-row items-center justify-between gap-10 relative overflow-hidden group"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="mt-32 relative min-h-[500px] flex items-center justify-center overflow-hidden"
         >
-          <div className="relative z-10 text-center lg:text-left">
-            <h3 className="text-3xl md:text-4xl font-bold text-[#0A2540] mb-4 tracking-tight">¿Tienes otra idea en mente?</h3>
-            <p className="text-slate-500 text-lg">Cuéntanos qué necesitas y lo haremos realidad para ti.</p>
+          {/* Interactive Particle Field */}
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                animate={{ 
+                  x: [Math.random() * 100 - 50, Math.random() * 100 - 50],
+                  y: [Math.random() * 100 - 50, Math.random() * 100 - 50],
+                  scale: [1, 1.5, 1],
+                  opacity: [0.1, 0.4, 0.1],
+                }}
+                transition={{ 
+                  duration: 10 + Math.random() * 10, 
+                  repeat: Infinity, 
+                  ease: "linear" 
+                }}
+                className="absolute w-2 h-2 bg-blue-400 rounded-full blur-[2px]"
+                style={{ 
+                  left: `${Math.random() * 100}%`, 
+                  top: `${Math.random() * 100}%` 
+                }}
+              />
+            ))}
           </div>
-          <a 
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative z-10 px-10 py-5 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 hover:scale-105 transition-all flex items-center gap-3 shadow-xl shadow-blue-200"
-          >
-            ¡Hablemos por WhatsApp! <ArrowRight size={20} />
-          </a>
-          
-          {/* Background circles */}
-          <div className="absolute -right-20 -top-20 w-64 h-64 bg-blue-50 rounded-full group-hover:scale-110 transition-transform duration-700" />
-          <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-rose-50 rounded-full group-hover:scale-110 transition-transform duration-700" />
+
+          {/* Transparent Frame */}
+          <div className="relative z-10 w-full max-w-6xl p-12 md:p-24 rounded-[5rem] border border-white/20 backdrop-blur-[2px] group overflow-hidden">
+            
+            {/* Animated Edge Glow */}
+            <motion.div 
+              animate={{ 
+                rotate: 360,
+              }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute -inset-1 border-2 border-transparent bg-gradient-to-r from-blue-500/0 via-blue-500/20 to-blue-500/0 [mask-image:linear-gradient(white,white)] pointer-events-none"
+            />
+
+            <div className="relative z-20 flex flex-col items-center text-center">
+              <motion.span
+                initial={{ letterSpacing: "0.2em", opacity: 0 }}
+                whileInView={{ letterSpacing: "0.5em", opacity: 1 }}
+                className="text-[10px] font-black text-blue-500 uppercase mb-8 block"
+              >
+                Trascendiendo el Código
+              </motion.span>
+
+              <h3 className="text-5xl md:text-8xl font-black text-[#0A2540] mb-10 tracking-tighter leading-tight">
+                ¿Tu idea está <br />
+                <span className="relative inline-block">
+                  preparada?
+                  <motion.div 
+                    animate={{ scaleX: [0, 1, 0] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                    className="absolute bottom-2 left-0 w-full h-3 bg-blue-500/20 -z-10 origin-left"
+                  />
+                </span>
+              </h3>
+              
+              <p className="text-slate-600/70 text-xl md:text-3xl font-medium leading-relaxed max-w-3xl mb-16">
+                Desbloqueamos el potencial infinito de tu negocio con tecnología que respira.
+              </p>
+
+              <div className="flex flex-wrap justify-center gap-8">
+                <a 
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/btn relative px-16 py-8 bg-transparent border-2 border-blue-600 text-blue-600 font-black rounded-full hover:bg-blue-600 hover:text-white transition-all duration-500 flex items-center gap-4 overflow-hidden"
+                >
+                  <span className="text-lg uppercase tracking-widest">Hacerlo Realidad</span>
+                  <ArrowRight size={24} className="group-hover/btn:translate-x-2 transition-transform" />
+                  
+                  {/* Neon Glow Hover */}
+                  <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover/btn:opacity-100 transition-opacity -z-10 shadow-[0_0_50px_rgba(37,99,235,0.8)]" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Ambient Lighting */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-400/5 blur-[150px] -z-10" />
         </motion.div>
       </div>
 

@@ -38,8 +38,41 @@ const projects = [
 ];
 
 const Portfolio = () => {
-  // Duplicamos para el efecto de scroll infinito
+  const scrollRef = React.useRef(null);
+  const [isPaused, setIsPaused] = React.useState(false);
+
+  // Triple the projects for infinite scroll
   const allProjects = [...projects, ...projects, ...projects];
+
+  React.useEffect(() => {
+    let animationFrame;
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    // Set initial position to middle set of projects
+    const singleSetWidth = scrollContainer.scrollWidth / 3;
+    if (scrollContainer.scrollLeft === 0) {
+      scrollContainer.scrollLeft = singleSetWidth;
+    }
+
+    const autoScroll = () => {
+      if (!isPaused && scrollContainer) {
+        scrollContainer.scrollLeft += 0.8; // Smooth slow scroll
+        
+        // Seamless loop jump
+        if (scrollContainer.scrollLeft >= singleSetWidth * 2) {
+          scrollContainer.scrollLeft = singleSetWidth;
+        }
+        if (scrollContainer.scrollLeft <= 0) {
+          scrollContainer.scrollLeft = singleSetWidth;
+        }
+      }
+      animationFrame = requestAnimationFrame(autoScroll);
+    };
+
+    animationFrame = requestAnimationFrame(autoScroll);
+    return () => cancelAnimationFrame(animationFrame);
+  }, [isPaused]);
 
   return (
     <section id="portafolio" className="py-32 relative bg-transparent overflow-hidden">
@@ -57,62 +90,65 @@ const Portfolio = () => {
           whileInView={{ opacity: 1, y: 0 }}
           className="text-5xl md:text-7xl font-bold tracking-tighter text-[#0A2540] mb-8"
         >
-          Proyectos que <span className="text-blue-500">cobran vida.</span>
+          Proyectos <span className="text-blue-500">Exitosos.</span>
         </motion.h2>
         
-        <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed font-medium">
           Hemos trabajado en soluciones reales que ya están ayudando a miles de personas.
         </p>
       </div>
 
-      <div className="relative w-full group">
-        {/* Fade effects on the sides */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-[#FAFAFC] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-[#FAFAFC] to-transparent z-10 pointer-events-none" />
+      <div className="relative w-full">
+        {/* Navigation Fades */}
+        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-[#FAFAFC] to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-[#FAFAFC] to-transparent z-20 pointer-events-none" />
         
-        <div className="animate-scroll-infinite flex gap-4 md:gap-8 pb-10 md:pb-20 pt-6 md:pt-10">
+        <div 
+          ref={scrollRef}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onMouseDown={() => setIsPaused(true)}
+          className={`flex gap-8 pb-20 pt-10 overflow-x-auto scrollbar-hide select-none transition-all duration-300 ${isPaused ? 'opacity-100' : 'opacity-95'}`}
+          style={{ scrollSnapType: 'x proximity' }}
+        >
           {allProjects.map((project, index) => (
             <motion.a 
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
               key={index}
-              whileHover={{ y: -15 }}
-              className="relative w-[280px] sm:w-[320px] md:w-[400px] flex-shrink-0 group/card cursor-pointer"
+              whileHover={{ y: -10, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="relative w-[300px] sm:w-[350px] md:w-[450px] flex-shrink-0 group/card scroll-snap-align-start"
             >
-              <div className="h-full rounded-[2.5rem] md:rounded-[3.5rem] bg-white border-2 md:border-4 border-white shadow-xl md:shadow-2xl shadow-blue-100/40 overflow-hidden transition-all duration-500 group-hover/card:shadow-blue-200/60">
+              <div className="h-full rounded-[3rem] bg-white border-2 border-white shadow-[0_20px_50px_-15px_rgba(148,163,184,0.15)] overflow-hidden transition-all duration-500 group-hover/card:shadow-blue-200/50 group-hover/card:border-blue-100">
                 {/* Image Container */}
-                <div className="h-48 md:h-56 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/10 group-hover/card:bg-transparent transition-colors z-10" />
+                <div className="h-56 md:h-64 relative overflow-hidden pointer-events-none">
+                  <div className="absolute inset-0 bg-slate-900/5 group-hover/card:bg-transparent transition-colors z-10" />
                   <img 
                     src={project.image} 
                     alt={project.title} 
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-110"
-                    onError={(e) => {
-                      e.target.onerror = null; 
-                      e.target.src = 'https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=800&q=80';
-                    }}
                   />
-                  {/* Badge */}
-                  <div className={`absolute top-4 left-4 md:top-6 md:left-6 px-3 py-1.5 md:px-4 md:py-2 rounded-xl md:rounded-2xl bg-white/90 backdrop-blur-md text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#0A2540] z-20`}>
+                  <div className="absolute top-6 left-6 px-4 py-2 rounded-2xl bg-white/90 backdrop-blur-md text-[10px] font-black uppercase tracking-widest text-blue-600 z-20 shadow-sm">
                     {project.type}
                   </div>
                 </div>
                 
                 {/* Content */}
-                <div className="p-6 md:p-10 text-left">
-                  <h3 className="text-xl md:text-3xl font-bold text-[#0A2540] mb-2 md:mb-3 group-hover/card:text-blue-600 transition-colors">
+                <div className="p-8 md:p-12 text-left pointer-events-none">
+                  <h3 className="text-2xl md:text-3xl font-black text-[#0A2540] mb-3 group-hover/card:text-blue-600 transition-colors tracking-tight">
                     {project.title}
                   </h3>
-                  <p className="text-slate-500 text-xs md:text-base leading-relaxed mb-6 md:mb-8 line-clamp-2 md:line-clamp-none">
+                  <p className="text-slate-500 text-sm md:text-base leading-relaxed mb-8 font-medium line-clamp-2">
                     {project.desc}
                   </p>
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] md:text-xs font-bold text-blue-500 flex items-center gap-2 group-hover/card:translate-x-1 md:group-hover/card:translate-x-2 transition-transform">
-                      Visitar sitio <ExternalLink size={12} />
+                    <span className="text-xs font-black text-blue-500 flex items-center gap-2 group-hover/card:gap-4 transition-all">
+                      Ver Proyecto <ExternalLink size={16} />
                     </span>
-                    <div className={`w-10 md:w-12 h-1 md:h-1.5 rounded-full bg-gradient-to-r ${project.color}`} />
+                    <div className={`w-12 h-1.5 rounded-full bg-gradient-to-r ${project.color} opacity-80`} />
                   </div>
                 </div>
               </div>
