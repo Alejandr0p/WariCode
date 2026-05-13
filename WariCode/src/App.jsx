@@ -63,9 +63,9 @@ const App = () => {
                   className="bg-white p-10 md:p-14 rounded-[2.5rem] apple-shadow-lg"
                 >
                   <span className="text-[#3B82F6] font-semibold tracking-wider text-xs mb-6 block uppercase">Nuestra Misión</span>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-[#0A2540]">Impulsar tu negocio digital</h3>
+                  <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-slate-900">Ingeniería de Clase Mundial</h3>
                   <p className="text-slate-500 leading-relaxed text-lg">
-                    Diseñamos experiencias digitales profesionales y amigables. Ayudamos a clínicas, gimnasios y tiendas a automatizar sus procesos y atraer más clientes con sistemas diseñados a la perfección.
+                    Nuestra misión es digitalizar negocios con el estándar de excelencia de la <span className="text-[#1E3A8A] font-bold">UNI</span>. Transformamos procesos complejos en experiencias fluidas, ayudando a empresas peruanas a escalar con software diseñado bajo el rigor de la mejor ingeniería del país.
                   </p>
                 </motion.div>
 
@@ -76,9 +76,9 @@ const App = () => {
                   className="bg-white p-10 md:p-14 rounded-[2.5rem] apple-shadow-lg"
                 >
                   <span className="text-[#3B82F6] font-semibold tracking-wider text-xs mb-6 block uppercase">Nuestra Visión</span>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-[#0A2540]">Tecnología accesible</h3>
+                  <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-slate-900">Liderazgo Tecnológico</h3>
                   <p className="text-slate-500 leading-relaxed text-lg">
-                    Creemos que el diseño premium y el software robusto no deberían ser solo para las grandes corporaciones. Creamos soluciones elegantes y fáciles de usar al alcance de tu mano.
+                    Aspiramos a ser el referente en desarrollo de software de alta gama en Lima y el mundo. Creemos firmemente que el talento de la <span className="text-[#1E3A8A] font-bold">Universidad Nacional de Ingeniería</span> está capacitado para liderar la innovación tecnológica global desde el Perú.
                   </p>
                 </motion.div>
               </div>

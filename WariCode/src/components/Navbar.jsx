@@ -28,7 +28,7 @@ const Navbar = () => {
         } flex items-center justify-between px-6 md:px-8`}
       >
         <a href="#inicio" className="flex items-center gap-2 group cursor-pointer">
-          <span className="text-xl font-bold tracking-tight text-[#0A2540]">
+          <span className="text-xl font-bold tracking-tight text-slate-900">
             WariCode<span className="text-[#3B82F6]">.</span>
           </span>
         </a>
@@ -43,7 +43,7 @@ const Navbar = () => {
             <a
               key={item.name}
               href={`#${item.id}`}
-              className="text-sm font-medium text-slate-500 hover:text-[#0A2540] transition-colors"
+              className="text-[16px] font-semibold text-slate-900 hover:text-[#3B82F6] transition-colors"
             >
               {item.name}
             </a>
@@ -54,7 +54,7 @@ const Navbar = () => {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="px-5 py-2 bg-[#1E3A8A] text-white font-medium rounded-full text-sm transition-all apple-shadow"
+            className="px-5 py-2 bg-[#1E3A8A] text-white font-medium rounded-full text-[16px] transition-all apple-shadow"
           >
             Contáctanos
           </motion.a>
@@ -63,7 +63,7 @@ const Navbar = () => {
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-[#0A2540] p-2"
+            className="text-slate-900 p-2"
           >
             {isOpen ? <X /> : <Menu />}
           </button>
@@ -90,7 +90,7 @@ const Navbar = () => {
                 <a
                   key={item.name}
                   href={`#${item.id}`}
-                  className="text-xl font-bold text-[#0A2540] hover:text-[#3B82F6] transition-colors"
+                  className="text-xl font-bold text-slate-900 hover:text-[#3B82F6] transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}

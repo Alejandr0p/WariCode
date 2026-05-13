@@ -94,7 +94,7 @@ const Portfolio = () => {
         </motion.h2>
         
         <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed font-medium">
-          Hemos trabajado en soluciones reales que ya están ayudando a miles de personas.
+          Desde la <span className="text-[#1E3A8A] font-bold">UNI</span> para el mundo: desarrollamos soluciones de alta ingeniería que ya están transformando la realidad de miles de usuarios.
         </p>
       </div>
 

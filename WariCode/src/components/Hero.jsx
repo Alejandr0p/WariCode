@@ -19,19 +19,19 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             className="mb-6 md:mb-8 flex items-center justify-center"
           >
-            <span className="text-[10px] md:text-xs font-bold tracking-widest text-[#1E3A8A] uppercase bg-white px-4 py-2 rounded-full apple-shadow border border-[#E2E8F0]">
-              Impulsa tu negocio digital
+            <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-[#1E3A8A] uppercase bg-white px-5 py-2.5 rounded-full apple-shadow border border-[#E2E8F0]">
+              Ingeniería de Software • UNI Lima
             </span>
           </motion.div>
-          
-          <motion.h1 
+
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-7xl lg:text-8xl font-black leading-[1.1] mb-6 tracking-tight text-[#0A2540]"
+            className="text-4xl md:text-7xl lg:text-8xl font-black leading-[1.1] mb-6 tracking-tight text-slate-900"
           >
-            Sistemas Web que <br className="hidden md:block" />
-            <span className="text-gradient">Generan Ventas.</span>
+            Llevamos tu Visión <br className="hidden md:block" />
+            <span className="text-gradient">Por las Nubes.</span>
           </motion.h1>
 
           <motion.p
@@ -40,7 +40,7 @@ const Hero = () => {
             transition={{ delay: 0.2 }}
             className="text-slate-600 text-base md:text-xl max-w-3xl mx-auto mb-10 md:mb-12 leading-relaxed px-4 md:px-0"
           >
-            Diseño premium y funcionalidad perfecta para cualquier escala. Creamos sistemas a la medida, <span className="font-bold text-[#1E3A8A]">intuitivos, elegantes y 100% seguros.</span>
+            Ingeniería de la <span className="font-bold text-[#1E3A8A]">UNI</span> para elevar tu potencial. Software de élite para clínicas, gimnasios y empresas que buscan <span className="font-bold text-slate-900">llegar más allá de las nubes.</span>
           </motion.p>
 
           <motion.div

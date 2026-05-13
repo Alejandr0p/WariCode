@@ -140,9 +140,9 @@ const Services = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed"
+            className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium"
           >
-            Soluciones simples y bonitas para que te olvides de la tecnología y te concentres en lo que más te gusta.
+            Aplicamos el rigor de la ingeniería de la <span className="text-[#1E3A8A] font-bold">UNI</span> para desarrollar soluciones que simplifican procesos y potencian el crecimiento de todo tipo de industrias.
           </motion.p>
         </div>
 

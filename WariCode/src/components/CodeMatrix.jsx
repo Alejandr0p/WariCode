@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 
 const BackgroundRain = () => {
   const canvasRef = useRef(null); // Lluvia
@@ -154,7 +155,7 @@ const BackgroundRain = () => {
             100% { transform: scale(1.1) translateX(0) translateY(0); }
           }
           .animate-clouds {
-            animation: floatClouds 50s ease-in-out infinite;
+            animation: floatClouds 40s ease-in-out infinite;
           }
         `}
       </style>
