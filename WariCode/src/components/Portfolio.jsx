@@ -8,7 +8,9 @@ const projects = [
     type: "Plataforma Educativa",
     desc: "El punto de encuentro para estudiantes de la UNI con recursos y foros.",
     url: "https://indexuni.site",
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80",
+    image: "/portfolio/indexuni.png",
+    imageFit: "object-contain p-8",
+    imageBg: "bg-white",
     color: "from-blue-400 to-indigo-500"
   },
   {
@@ -16,7 +18,9 @@ const projects = [
     type: "Portal Universitario",
     desc: "Todo lo que necesitas para tu vida universitaria en un solo lugar.",
     url: "https://estacionu.com",
-    image: "https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    image: "/portfolio/estacionu.png",
+    imageFit: "object-contain p-8",
+    imageBg: "bg-white",
     color: "from-purple-400 to-pink-500"
   },
   {
@@ -24,7 +28,9 @@ const projects = [
     type: "Consultorio Digital",
     desc: "Plataforma profesional para la Dra. Rodríguez con agendamiento.",
     url: "https://neuropsicologarodriguez.com",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80",
+    image: "/portfolio/saludmental.png",
+    imageFit: "object-contain p-8",
+    imageBg: "bg-white",
     color: "from-emerald-400 to-teal-500"
   },
   {
@@ -32,7 +38,9 @@ const projects = [
     type: "E-Commerce Local",
     desc: "Minimarket digital con sistema de pedidos y delivery en tiempo real.",
     url: "https://bodegajiva.onrender.com",
-    image: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    image: "/portfolio/bodegajiva.png",
+    imageFit: "object-cover",
+    imageBg: "",
     color: "from-amber-400 to-orange-500"
   }
 ];
@@ -93,7 +101,7 @@ const Portfolio = () => {
           Proyectos <span className="text-blue-500">Exitosos.</span>
         </motion.h2>
         
-        <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed font-medium">
+        <p className="text-xl text-slate-700 max-w-2xl mx-auto leading-relaxed font-medium">
           Desde la <span className="text-[#1E3A8A] font-bold">UNI</span> para el mundo: desarrollamos soluciones de alta ingeniería que ya están transformando la realidad de miles de usuarios.
         </p>
       </div>
@@ -123,12 +131,12 @@ const Portfolio = () => {
             >
               <div className="h-full rounded-[3rem] bg-white border-2 border-white shadow-[0_20px_50px_-15px_rgba(148,163,184,0.15)] overflow-hidden transition-all duration-500 group-hover/card:shadow-blue-200/50 group-hover/card:border-blue-100">
                 {/* Image Container */}
-                <div className="h-56 md:h-64 relative overflow-hidden pointer-events-none">
+                <div className={`h-56 md:h-64 relative overflow-hidden pointer-events-none ${project.imageBg}`}>
                   <div className="absolute inset-0 bg-slate-900/5 group-hover/card:bg-transparent transition-colors z-10" />
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-110"
+                    className={`w-full h-full transition-transform duration-1000 group-hover/card:scale-105 ${project.imageFit}`}
                   />
                   <div className="absolute top-6 left-6 px-4 py-2 rounded-2xl bg-white/90 backdrop-blur-md text-[10px] font-black uppercase tracking-widest text-blue-600 z-20 shadow-sm">
                     {project.type}
@@ -140,7 +148,7 @@ const Portfolio = () => {
                   <h3 className="text-2xl md:text-3xl font-black text-[#0A2540] mb-3 group-hover/card:text-blue-600 transition-colors tracking-tight">
                     {project.title}
                   </h3>
-                  <p className="text-slate-500 text-sm md:text-base leading-relaxed mb-8 font-medium line-clamp-2">
+                  <p className="text-slate-700 text-sm md:text-base leading-relaxed mb-8 font-medium line-clamp-2">
                     {project.desc}
                   </p>
                   

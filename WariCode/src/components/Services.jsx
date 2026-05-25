@@ -1,87 +1,120 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Cloud, Heart, Dumbbell, ShoppingBag, Tablet, ArrowRight, Star, Sun } from 'lucide-react';
+import { Cloud, Heart, Dumbbell, ShoppingBag, Tablet, ArrowRight, Star, Sun, Globe, Cpu, Layout, Smartphone } from 'lucide-react';
 
-const services = [
+const mainServices = [
+  {
+    title: "Landing Pages",
+    subtitle: "Conversión de Impacto",
+    desc: "Páginas de aterrizaje de alto rendimiento diseñadas específicamente para capturar prospectos y maximizar tus ventas.",
+    detail: "Creamos páginas web enfocadas al 100% en la conversión de visitas en clientes. Ideales para campañas publicitarias (Google Ads, Facebook/Instagram Ads). Incluyen velocidad de carga ultra rápida, botones estratégicos de llamada a la acción y un diseño completamente responsivo.",
+    includes: ["Diseño UI/UX de alta conversión", "Optimización de velocidad (Speed SEO)", "Formularios dinámicos y chat de WhatsApp"],
+    icon: <Layout className="w-8 h-8 text-blue-400" />,
+    color: "from-white/90 to-blue-50/50",
+    delay: 0.1
+  },
+  {
+    title: "Páginas de Presentación",
+    subtitle: "Presencia Corporativa",
+    desc: "Sitios institucionales elegantes que transmiten seriedad, confianza y el valor diferencial de tu marca.",
+    detail: "La cara digital de tu negocio. Diseñamos sitios web completos con secciones bien estructuradas (Nosotros, Servicios, Catálogo, Portafolio, Contacto) que proyectan una imagen sólida y profesional ante tus clientes y socios estratégicos.",
+    includes: ["Arquitectura de información clara", "Optimización SEO inicial de marca", "Formularios de contacto profesionales"],
+    icon: <Globe className="w-8 h-8 text-blue-400" />,
+    color: "from-white/90 to-blue-50/50",
+    delay: 0.2
+  },
+  {
+    title: "E-Commerce",
+    subtitle: "Tienda Online 24/7",
+    desc: "Plataformas de venta robustas con carrito de compras, catálogo inteligente y pagos directos.",
+    detail: "Lleva tus ventas físicas a todo el país. Creamos tu tienda virtual a medida para que tus clientes exploren tus productos, los añadan al carrito y paguen de forma automatizada mediante pasarelas seguras (Yape, Plin, tarjetas de crédito y débito).",
+    includes: ["Carrito y pasarelas de pago integradas", "Gestión sencilla de catálogo y stock", "Notificaciones de pedidos al instante"],
+    icon: <ShoppingBag className="w-8 h-8 text-blue-400" />,
+    color: "from-white/90 to-blue-50/50",
+    delay: 0.3
+  },
+  {
+    title: "Sistemas Web a Medida",
+    subtitle: "Automatización Absoluta",
+    desc: "Software personalizado a la medida de los procesos, operaciones y necesidades de tu negocio.",
+    detail: "Desarrollamos soluciones digitales que resuelven retos específicos de tu negocio. Desde sistemas de control administrativo, gestión de inventarios, automatización de flujos internos, hasta plataformas personalizadas con bases de datos seguras y reportes analíticos.",
+    includes: ["Bases de datos seguras y escalables", "Paneles de administración (Dashboards)", "Roles y permisos de usuario a medida"],
+    icon: <Cpu className="w-8 h-8 text-blue-400" />,
+    color: "from-white/90 to-blue-50/50",
+    delay: 0.4
+  }
+];
+
+const additionalServices = [
   {
     title: "Para Clínicas",
-    subtitle: "Citas sin estrés",
-    desc: "Tu propia página donde tus pacientes pueden agendar sus citas fácilmente desde su celular.",
-    detail: "Creamos un sistema donde tus pacientes ven tus horarios disponibles y reservan en segundos. Te llega una notificación y listo, ¡olvídate de las llamadas interminables!",
-    includes: ["Calendario inteligente", "Recordatorios por WhatsApp", "Ficha digital de pacientes"],
-    icon: <Heart className="w-8 h-8 text-blue-400" />,
+    subtitle: "Gestión de Citas",
+    desc: "Tus pacientes agendan citas desde su móvil en segundos.",
+    detail: "Un sistema inteligente que muestra tus horarios disponibles para reserva inmediata. Olvídate de la saturación telefónica y las agendas manuales.",
+    includes: ["Calendario inteligente", "Recordatorios automáticos", "Ficha digital básica"],
+    icon: <Heart className="w-6 h-6 text-blue-400" />,
     color: "from-white/90 to-blue-50/50",
     delay: 0.1
   },
   {
     title: "Para Gimnasios",
-    subtitle: "Control total",
-    desc: "Olvida el papel. Controla quién entra, quién pagó y mira tus ganancias desde donde estés.",
-    detail: "Administra tu gimnasio con total tranquilidad. Sabrás exactamente quién tiene la mensualidad al día y recibirás reportes de cuánto estás ganando mes a mes.",
-    includes: ["Control de mensualidades", "Registro de asistencia", "Reportes de ventas"],
-    icon: <Dumbbell className="w-8 h-8 text-blue-400" />,
+    subtitle: "Control de Membresías",
+    desc: "Administra mensualidades, asistencia e ingresos fácilmente.",
+    detail: "Lleva el control de membresías, vencimientos y asistencias diarias con reportes automáticos de ganancias desde cualquier dispositivo.",
+    includes: ["Alertas de mensualidad", "Asistencia de socios", "Reporte financiero express"],
+    icon: <Dumbbell className="w-6 h-6 text-blue-400" />,
     color: "from-white/90 to-blue-50/50",
     delay: 0.2
   },
   {
     title: "Para Farmacias",
-    subtitle: "Ventas rápidas",
-    desc: "No pierdas la cuenta de tus medicinas. Un sistema fácil que te avisa qué falta.",
-    detail: "Llevar el inventario de una botica puede ser difícil, pero con nuestro sistema es súper sencillo. Te avisamos cuando un producto se está agotando.",
-    includes: ["Inventario automático", "Alerta de poco stock", "Cierre de caja fácil"],
-    icon: <Tablet className="w-8 h-8 text-blue-400" />,
+    subtitle: "Inventario y Ventas",
+    desc: "Control de stock inteligente y cierre de caja simplificado.",
+    detail: "Facilitamos la venta rápida en el mostrador y te alertamos automáticamente cuando las medicinas o productos de mayor rotación se están agotando.",
+    includes: ["Registro rápido de ventas", "Alertas de stock mínimo", "Reporte de caja diario"],
+    icon: <Tablet className="w-6 h-6 text-blue-400" />,
     color: "from-white/90 to-blue-50/50",
     delay: 0.3
   },
   {
-    title: "Tiendas Online",
-    subtitle: "Vende 24/7",
-    desc: "Muestra tus productos a todo el mundo y recibe pagos por Yape automáticamente.",
-    detail: "Llevamos tu negocio al mundo digital. Tus clientes podrán ver tu catálogo, elegir sus productos favoritos y pagarte al instante de forma segura.",
-    includes: ["Catálogo de productos", "Pagos con Yape/Plin/Tarjeta", "Carrito de compras"],
-    icon: <ShoppingBag className="w-8 h-8 text-blue-400" />,
+    title: "Restaurantes",
+    subtitle: "Carta QR y Pedidos",
+    desc: "Menú digital dinámico y pedidos fluidos directo a tu WhatsApp.",
+    detail: "Tus comensales escanean un código QR, eligen sus platos de la carta digital y te envían el pedido listo por WhatsApp, acelerando la atención en el salón o delivery.",
+    includes: ["Menú QR interactivo", "Envío de pedidos a WhatsApp", "Gestión visual de platos"],
+    icon: <Star className="w-6 h-6 text-blue-400" />,
     color: "from-white/90 to-blue-50/50",
     delay: 0.4
   },
   {
-    title: "Restaurantes",
-    subtitle: "Pedidos al toque",
-    desc: "Menú digital con QR y recepción de pedidos directamente a tu WhatsApp.",
-    detail: "Tus clientes escanean el código, eligen sus platos favoritos y te envían el pedido listo por WhatsApp. ¡Agiliza tu atención y evita errores!",
-    includes: ["Carta digital con QR", "Pedidos por WhatsApp", "Gestión de mesas"],
-    icon: <Star className="w-8 h-8 text-blue-400" />,
+    title: "Para Colegios",
+    subtitle: "Aula e Información",
+    desc: "Subida de notas, tareas y comunicados directos a los padres.",
+    detail: "Una intranet ágil para mantener comunicada a toda tu comunidad educativa. Los padres podrán monitorear el progreso y avisos del colegio en tiempo real.",
+    includes: ["Registro de notas en línea", "Envío de tareas digital", "Comunicados masivos seguros"],
+    icon: <Cloud className="w-6 h-6 text-blue-400" />,
     color: "from-white/90 to-blue-50/50",
     delay: 0.5
   },
   {
-    title: "Para Colegios",
-    subtitle: "Aula Digital",
-    desc: "Plataforma para subir notas, tareas y comunicados para los padres.",
-    detail: "Moderniza tu institución educativa con un portal donde los padres ven el progreso de sus hijos y reciben noticias importantes al instante.",
-    includes: ["Registro de notas", "Envío de tareas", "Avisos a padres"],
-    icon: <Cloud className="w-8 h-8 text-blue-400" />,
+    title: "Inmobiliarias",
+    subtitle: "Vitrina de Propiedades",
+    desc: "Muestra inmuebles con galerías HD y filtros de búsqueda.",
+    detail: "Atrae a compradores e inquilinos con una plataforma elegante donde pueden filtrar propiedades por precio, ubicación, tamaño y contactarte en un clic.",
+    includes: ["Galería de fotos de alta resolución", "Filtros por zona y tipo", "Contacto directo por inmueble"],
+    icon: <Sun className="w-6 h-6 text-blue-400" />,
     color: "from-white/90 to-blue-50/50",
     delay: 0.6
   },
   {
-    title: "Inmobiliarias",
-    subtitle: "Vende más rápido",
-    desc: "Muestra tus departamentos y casas con galerías de fotos impresionantes.",
-    detail: "Crea una vitrina digital de alto impacto para tus propiedades. Tus clientes podrán filtrar por precio, zona y contactarte en un clic.",
-    includes: ["Galería de fotos HD", "Filtros de búsqueda", "Formulario de contacto"],
-    icon: <Sun className="w-8 h-8 text-blue-400" />,
+    title: "Abogados y Contadores",
+    subtitle: "Expedientes y Tareas",
+    desc: "Organización blindada de expedientes, clientes y plazos.",
+    detail: "Evita multas o demoras organizando todos tus documentos legales o contables de forma segura, con alarmas activas para plazos claves.",
+    includes: ["Repositorio documental seguro", "Gestión de fechas críticas", "Base de datos de clientes"],
+    icon: <Tablet className="w-6 h-6 text-blue-400" />,
     color: "from-white/90 to-blue-50/50",
     delay: 0.7
-  },
-  {
-    title: "Abogados y Cont.",
-    subtitle: "Orden Total",
-    desc: "Sistema para organizar expedientes, clientes y plazos importantes.",
-    detail: "Mantén el control de todos tus casos y documentos legales o contables de forma segura y organizada. Nunca más pierdas una fecha importante.",
-    includes: ["Gestión de documentos", "Alertas de plazos", "Base de datos de clientes"],
-    icon: <Tablet className="w-8 h-8 text-blue-400" />,
-    color: "from-white/90 to-blue-50/50",
-    delay: 0.8
   }
 ];
 
@@ -140,48 +173,105 @@ const Services = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium"
+            className="text-xl text-slate-800 max-w-2xl mx-auto leading-relaxed font-medium"
           >
             Aplicamos el rigor de la ingeniería de la <span className="text-[#1E3A8A] font-bold">UNI</span> para desarrollar soluciones que simplifican procesos y potencian el crecimiento de todo tipo de industrias.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => (
+        {/* 4 MAIN SERVICES (Friendly, balanced and slightly larger UI/UX) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 xl:gap-6 mb-24 w-full px-2">
+          {mainServices.map((service, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: service.delay, duration: 0.6 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
               className="group relative"
             >
-              {/* Card Container */}
+              {/* Card Container (Perfect size) */}
               <div 
                 onClick={() => setSelected(service)}
-                className="h-full cursor-pointer p-8 md:p-10 rounded-[3rem] bg-white/40 backdrop-blur-xl border border-white/60 shadow-[0_20px_50px_-15px_rgba(148,163,184,0.1)] flex flex-col items-center text-center transition-all duration-500 hover:bg-white/80 hover:shadow-blue-200/40 hover:-translate-y-3"
+                className="h-full cursor-pointer p-11 md:p-14 rounded-[3rem] bg-white/60 backdrop-blur-xl border border-blue-100/40 shadow-[0_20px_45px_-15px_rgba(30,58,138,0.05)] flex flex-col transition-all duration-500 hover:bg-white hover:shadow-blue-200/30 hover:-translate-y-2"
               >
-                {/* Icon in Glass Bubble */}
-                <div className="relative mb-8">
+                {/* Icon and Subtitle Bubble */}
+                <div className="relative mb-6">
                   <div className="absolute inset-0 bg-blue-400/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative z-10 w-20 h-20 rounded-[2rem] bg-white shadow-xl shadow-blue-100/50 flex items-center justify-center text-blue-500 transition-all duration-500 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white">
+                  <div className="relative z-10 w-20 h-20 rounded-3xl bg-white shadow-lg shadow-blue-100/50 flex items-center justify-center text-blue-500 transition-all duration-500 group-hover:scale-105 group-hover:bg-blue-600 group-hover:text-white">
                     {React.cloneElement(service.icon, { size: 32 })}
                   </div>
                 </div>
                 
                 {/* Text Content */}
-                <span className="text-[10px] font-black text-blue-500/60 uppercase tracking-[0.3em] mb-2">{service.subtitle}</span>
-                <h3 className="text-2xl font-black text-[#0A2540] mb-4 tracking-tighter leading-tight">{service.title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed font-medium mb-8">
+                <span className="text-[10px] font-black text-blue-500/60 uppercase tracking-[0.2em] mb-2 block">{service.subtitle}</span>
+                <h3 className="text-2xl md:text-3xl font-black text-[#0A2540] mb-3 tracking-tight leading-tight">{service.title}</h3>
+                <p className="text-slate-700 text-base leading-relaxed font-medium mb-6">
                   {service.desc}
                 </p>
                 
                 {/* Action Link */}
-                <div className="mt-auto flex items-center gap-2 text-xs font-black text-blue-600 opacity-60 group-hover:opacity-100 group-hover:gap-4 transition-all duration-500">
-                  EXPLORAR <ArrowRight size={16} />
+                <div className="mt-auto pt-5 border-t border-slate-100 flex items-center justify-between text-xs font-black text-blue-600 group-hover:text-[#1E3A8A] transition-colors">
+                  <span className="uppercase tracking-wider">Ver Más</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform" />
                 </div>
 
                 {/* Subtle Hover Glow Line at Bottom */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full transition-all duration-500 group-hover:w-1/2" />
+                <div className="absolute bottom-0 left-8 right-8 h-[2px] bg-gradient-to-r from-blue-400 to-[#1E3A8A] rounded-full scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* SECTION HEADER FOR ADDITIONAL SECTOR-SPECIFIC SERVICES */}
+        <div className="text-center mt-28 mb-16 max-w-2xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="inline-block px-4 py-1.5 rounded-full bg-white/50 border border-slate-200/50 shadow-sm mb-4"
+          >
+            <span className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">Soluciones Especializadas</span>
+          </motion.div>
+          <motion.h3 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-3xl md:text-4xl font-extrabold text-[#0A2540] tracking-tight mb-4"
+          >
+            Especialidades por Sector
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-slate-700 font-medium text-sm md:text-base leading-relaxed"
+          >
+            Sistemas especializados diseñados para cubrir las necesidades operativas específicas de cada rubro.
+          </motion.p>
+        </div>
+
+        {/* ADDITIONAL SECTOR-SPECIFIC SERVICES (Compact mention badges) */}
+        <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto mb-12">
+          {additionalServices.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.05, duration: 0.4 }}
+              className="group relative"
+            >
+              <div 
+                onClick={() => setSelected(service)}
+                className="group cursor-pointer flex items-center gap-3 px-6 py-4 rounded-2xl bg-white/50 backdrop-blur-md border border-slate-200/60 shadow-sm transition-all duration-300 hover:bg-white hover:border-blue-200 hover:-translate-y-1 hover:shadow-md"
+              >
+                <div className="text-blue-500 group-hover:text-blue-600 group-hover:scale-110 transition-transform">
+                  {service.icon}
+                </div>
+                <span className="text-base font-bold text-slate-800 group-hover:text-blue-900 transition-colors">
+                  {service.title}
+                </span>
+                <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 opacity-0 group-hover:opacity-100 group-hover:bg-blue-50 group-hover:text-blue-600 transition-all duration-300">
+                  <ArrowRight size={10} />
+                </div>
               </div>
             </motion.div>
           ))}
@@ -250,7 +340,7 @@ const Services = () => {
                 </span>
               </h3>
               
-              <p className="text-slate-600/70 text-xl md:text-3xl font-medium leading-relaxed max-w-3xl mb-16">
+              <p className="text-slate-700 text-xl md:text-3xl font-medium leading-relaxed max-w-3xl mb-16">
                 Desbloqueamos el potencial infinito de tu negocio con tecnología que respira.
               </p>
 
@@ -319,14 +409,14 @@ const Services = () => {
                 {/* Contenido Optimizado */}
                 <div className="p-8 md:p-10 bg-white/50 space-y-8">
                   <div>
-                    <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">¿Cómo te ayuda?</h4>
-                    <p className="text-slate-600 leading-relaxed font-medium">
+                    <h4 className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mb-3">¿Cómo te ayuda?</h4>
+                    <p className="text-slate-800 leading-relaxed font-medium">
                       {selected.detail}
                     </p>
                   </div>
 
                   <div>
-                    <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Lo que incluimos</h4>
+                    <h4 className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mb-4">Lo que incluimos</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {selected.includes.map((item, i) => (
                         <div 
@@ -336,7 +426,7 @@ const Services = () => {
                           <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center text-blue-500">
                             <Star size={10} fill="currentColor" />
                           </div>
-                          <span className="text-[13px] font-bold text-slate-700">{item}</span>
+                          <span className="text-[13px] font-bold text-slate-900">{item}</span>
                         </div>
                       ))}
                     </div>

@@ -38,9 +38,9 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-slate-600 text-base md:text-xl max-w-3xl mx-auto mb-10 md:mb-12 leading-relaxed px-4 md:px-0"
+            className="text-slate-950 text-lg md:text-2xl font-semibold max-w-3xl mx-auto mb-10 md:mb-12 leading-relaxed px-4 md:px-0"
           >
-            Ingeniería de la <span className="font-bold text-[#1E3A8A]">UNI</span> para elevar tu potencial. Software de élite para clínicas, gimnasios y empresas que buscan <span className="font-bold text-slate-900">llegar más allá de las nubes.</span>
+            Ingeniería de la <span className="font-extrabold text-[#1E3A8A]">UNI</span> para elevar tu potencial. Software de élite para clínicas, gimnasios y empresas que buscan <span className="font-extrabold text-[#1E3A8A]">llegar más allá de las nubes.</span>
           </motion.p>
 
           <motion.div
