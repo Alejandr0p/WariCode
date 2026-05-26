@@ -166,7 +166,7 @@ const Services = () => {
             whileInView={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-7xl font-bold tracking-tight text-[#0A2540] mb-8"
           >
-            Hacemos crecer <br /> <span className="text-blue-500">tu negocio.</span>
+            Hacemos crecer <br /> <span className="text-blue-700">tu negocio.</span>
           </motion.h2>
           
           <motion.p 
@@ -242,7 +242,7 @@ const Services = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-slate-700 font-medium text-sm md:text-base leading-relaxed"
+            className="text-slate-800 font-semibold text-sm md:text-base leading-relaxed"
           >
             Sistemas especializados diseñados para cubrir las necesidades operativas específicas de cada rubro.
           </motion.p>
@@ -340,7 +340,7 @@ const Services = () => {
                 </span>
               </h3>
               
-              <p className="text-slate-700 text-xl md:text-3xl font-medium leading-relaxed max-w-3xl mb-16">
+              <p className="text-slate-800 text-xl md:text-3xl font-semibold leading-relaxed max-w-3xl mb-16">
                 Desbloqueamos el potencial infinito de tu negocio con tecnología que respira.
               </p>
 
