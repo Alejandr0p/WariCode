@@ -45,7 +45,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-[#FAFAFC] text-slate-800 selection:bg-[#E0E7FF] selection:text-[#1E3A8A] relative font-sans overflow-x-hidden">
       <BackgroundRain />
-      
+
       {/* System Progress Bar */}
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] origin-left z-[100]" style={{ scaleX }} />
 
@@ -53,7 +53,7 @@ const App = () => {
         <Navbar />
         <main>
           <Hero />
-          
+
           {/* Misión & Visión — Ultra Premium Section */}
           <section id="nosotros" className="py-32 relative bg-transparent overflow-hidden">
 
@@ -333,7 +333,7 @@ const App = () => {
 
 
           <Services />
-          
+
           <Portfolio />
 
           {/* Footer Minimalista */}
