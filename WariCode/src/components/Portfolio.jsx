@@ -48,28 +48,9 @@ const projects = [
 const Portfolio = () => {
   const scrollRef = React.useRef(null);
   const [isPaused, setIsPaused] = React.useState(false);
-  const dragInfo = React.useRef({ isDragging: false, startX: 0, scrollLeft: 0, hasDragged: false });
 
   // Triple the projects for infinite scroll
   const allProjects = [...projects, ...projects, ...projects];
-
-  React.useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-
-    // Scroll wheel handler (vertical scroll -> horizontal scroll)
-    const onWheel = (e) => {
-      if (e.deltaY !== 0) {
-        e.preventDefault();
-        container.scrollLeft += e.deltaY * 1.2;
-      }
-    };
-
-    container.addEventListener('wheel', onWheel, { passive: false });
-    return () => {
-      container.removeEventListener('wheel', onWheel);
-    };
-  }, []);
 
   React.useEffect(() => {
     let animationFrame;
@@ -100,43 +81,6 @@ const Portfolio = () => {
     animationFrame = requestAnimationFrame(autoScroll);
     return () => cancelAnimationFrame(animationFrame);
   }, [isPaused]);
-
-  const handleMouseDown = (e) => {
-    const container = scrollRef.current;
-    if (!container) return;
-    dragInfo.current = {
-      isDragging: true,
-      startX: e.pageX - container.offsetLeft,
-      scrollLeft: container.scrollLeft,
-      hasDragged: false
-    };
-    setIsPaused(true);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!dragInfo.current.isDragging) return;
-    e.preventDefault();
-    const container = scrollRef.current;
-    if (!container) return;
-    const x = e.pageX - container.offsetLeft;
-    const walk = (x - dragInfo.current.startX) * 1.5;
-    
-    if (Math.abs(x - dragInfo.current.startX) > 8) {
-      dragInfo.current.hasDragged = true;
-    }
-    
-    container.scrollLeft = dragInfo.current.scrollLeft - walk;
-  };
-
-  const handleMouseUpOrLeave = () => {
-    if (dragInfo.current.isDragging) {
-      dragInfo.current.isDragging = false;
-      setTimeout(() => {
-        dragInfo.current.hasDragged = false;
-      }, 50);
-    }
-    setIsPaused(false);
-  };
 
   return (
     <section id="portafolio" className="py-32 relative bg-transparent overflow-hidden">
@@ -174,10 +118,9 @@ const Portfolio = () => {
         
         <div 
           ref={scrollRef}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUpOrLeave}
-          onMouseLeave={handleMouseUpOrLeave}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onMouseDown={() => setIsPaused(true)}
           className={`flex gap-8 pb-20 pt-10 overflow-x-auto scrollbar-hide select-none transition-all duration-300 ${isPaused ? 'opacity-100' : 'opacity-95'}`}
           style={{ scrollSnapType: 'x proximity' }}
         >
@@ -190,12 +133,6 @@ const Portfolio = () => {
               whileHover={{ y: -10, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="relative w-[300px] sm:w-[350px] md:w-[450px] flex-shrink-0 group/card scroll-snap-align-start"
-              onDragStart={(e) => e.preventDefault()}
-              onClick={(e) => {
-                if (dragInfo.current.hasDragged) {
-                  e.preventDefault();
-                }
-              }}
             >
               <div className="h-full rounded-[3rem] bg-white border-2 border-white shadow-[0_20px_50px_-15px_rgba(148,163,184,0.15)] overflow-hidden transition-all duration-500 group-hover/card:shadow-blue-200/50 group-hover/card:border-blue-100">
                 {/* Image Container */}
