@@ -8,7 +8,7 @@ const WhatsAppBot = () => {
 
   const handleSend = () => {
     if (!message.trim()) return;
-    const phone = "51943836076"; 
+    const phone = "51943836076";
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
     setMessage('');
@@ -48,8 +48,8 @@ const WhatsAppBot = () => {
                   </div>
                 </div>
               </div>
-              <button 
-                onClick={() => setIsOpen(false)} 
+              <button
+                onClick={() => setIsOpen(false)}
                 className="text-white/80 hover:text-white p-1.5 hover:bg-white/10 rounded-full transition-all"
               >
                 <X size={20} />

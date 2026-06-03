@@ -123,7 +123,7 @@ const Services = () => {
   const WHATSAPP_URL = "https://wa.me/51943836076?text=Estimados%20equipo%20de%20WariCode.%20Me%20pongo%20en%20contacto%20con%20ustedes%20para%20solicitar%20informaci%C3%B3n%20sobre%20sus%20servicios%20de%20desarrollo%20de%20software.";
 
   const handleContact = (serviceTitle = "") => {
-    const text = serviceTitle 
+    const text = serviceTitle
       ? `Estimados, me pongo en contacto para solicitar informaci%C3%B3n detallada sobre el servicio de: "${serviceTitle}". Me interesa implementar esta soluci%C3%B3n en mi negocio. Gracias de antemano.`
       : "Estimados equipo de WariCode. Me pongo en contacto con ustedes para solicitar informaci%C3%B3n sobre sus servicios de desarrollo de software y soluciones digitales.";
     window.open(`https://wa.me/51943836076?text=${text}`, '_blank');
@@ -134,16 +134,14 @@ const Services = () => {
     <section id="servicios" className="py-32 relative bg-transparent overflow-hidden">
       {/* Animated Floating Clouds in Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Invisible White Radial Mask to clear clouds under the text container */}
-        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[1000px] md:w-[1200px] h-[500px] bg-radial-glow-white opacity-85 rounded-full" />
-        <motion.div 
+        <motion.div
           animate={{ x: [-100, 100], y: [0, -20, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           className="absolute top-20 left-10 opacity-20"
         >
           <Cloud size={120} className="text-blue-200" />
         </motion.div>
-        <motion.div 
+        <motion.div
           animate={{ x: [200, -200], y: [0, 30, 0] }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
           className="absolute bottom-40 right-20 opacity-20"
@@ -162,22 +160,22 @@ const Services = () => {
             <Sun className="w-4 h-4 text-amber-500 animate-spin-slow" />
             <span className="text-xs font-bold text-blue-600 uppercase tracking-widest">Lo que hacemos por ti</span>
           </motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.15] mb-6 tracking-tight text-slate-900"
+            className="text-5xl md:text-7xl font-bold tracking-tight text-[#0A2540] mb-8"
           >
-            Hacemos crecer <br /> <span className="text-gradient-dark">tu negocio.</span>
+            Hacemos crecer <br /> <span className="text-blue-700">tu negocio.</span>
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-slate-800 text-lg md:text-2xl font-medium max-w-3xl mx-auto mb-10 md:mb-12 leading-relaxed px-4 md:px-0"
+            className="text-xl text-slate-800 max-w-2xl mx-auto leading-relaxed font-medium"
           >
-            Aplicamos el rigor de la ingeniería de la <span className="font-bold text-blue-700">UNI</span> para desarrollar soluciones que simplifican procesos y potencian el crecimiento de todo tipo de industrias.
+            Aplicamos el rigor de la ingeniería de la <span className="text-[#1E3A8A] font-bold">UNI</span> para desarrollar soluciones que simplifican procesos y potencian el crecimiento de todo tipo de industrias.
           </motion.p>
         </div>
 
@@ -193,7 +191,7 @@ const Services = () => {
               className="group relative"
             >
               {/* Card Container (Perfect size) */}
-              <div 
+              <div
                 onClick={() => setSelected(service)}
                 className="h-full cursor-pointer p-11 md:p-14 rounded-[3rem] bg-white/60 backdrop-blur-xl border border-blue-100/40 shadow-[0_20px_45px_-15px_rgba(30,58,138,0.05)] flex flex-col transition-all duration-500 hover:bg-white hover:shadow-blue-200/30 hover:-translate-y-2"
               >
@@ -204,14 +202,14 @@ const Services = () => {
                     {React.cloneElement(service.icon, { size: 32 })}
                   </div>
                 </div>
-                
+
                 {/* Text Content */}
                 <span className="text-[10px] font-black text-blue-500/60 uppercase tracking-[0.2em] mb-2 block">{service.subtitle}</span>
                 <h3 className="text-2xl md:text-3xl font-black text-[#0A2540] mb-3 tracking-tight leading-tight">{service.title}</h3>
                 <p className="text-slate-700 text-base leading-relaxed font-medium mb-6">
                   {service.desc}
                 </p>
-                
+
                 {/* Action Link */}
                 <div className="mt-auto pt-5 border-t border-slate-100 flex items-center justify-between text-xs font-black text-blue-600 group-hover:text-[#1E3A8A] transition-colors">
                   <span className="uppercase tracking-wider">Ver Más</span>
@@ -226,33 +224,28 @@ const Services = () => {
         </div>
 
         {/* SECTION HEADER FOR ADDITIONAL SECTOR-SPECIFIC SERVICES */}
-        <div className="text-center mt-32 mb-16 max-w-4xl mx-auto relative">
-          {/* Invisible White Radial Mask to clear clouds under this container */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] md:w-[1200px] h-[450px] bg-radial-glow-white opacity-90 rounded-full pointer-events-none z-0" />
-          
-          <div className="relative z-10">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              className="inline-block px-4 py-1.5 rounded-full bg-white/50 border border-slate-200/50 shadow-sm mb-4"
-            >
-              <span className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">Soluciones Especializadas</span>
-            </motion.div>
-            <motion.h3 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.15] mb-6 tracking-tight text-slate-900"
-            >
-              Especialidades por <span className="text-gradient-dark">Sector</span>
-            </motion.h3>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-slate-800 text-lg md:text-2xl font-medium max-w-3xl mx-auto mb-10 md:mb-12 leading-relaxed px-4 md:px-0"
-            >
-              Sistemas especializados diseñados para cubrir las necesidades operativas específicas de cada <span className="font-bold text-blue-700">rubro.</span>
-            </motion.p>
-          </div>
+        <div className="text-center mt-28 mb-16 max-w-2xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="inline-block px-4 py-1.5 rounded-full bg-white/50 border border-slate-200/50 shadow-sm mb-4"
+          >
+            <span className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">Soluciones Especializadas</span>
+          </motion.div>
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-3xl md:text-4xl font-extrabold text-[#0A2540] tracking-tight mb-4"
+          >
+            Especialidades por Sector
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-slate-800 font-semibold text-sm md:text-base leading-relaxed"
+          >
+            Sistemas especializados diseñados para cubrir las necesidades operativas específicas de cada rubro.
+          </motion.p>
         </div>
 
         {/* ADDITIONAL SECTOR-SPECIFIC SERVICES (Compact mention badges) */}
@@ -266,7 +259,7 @@ const Services = () => {
               transition={{ delay: index * 0.05, duration: 0.4 }}
               className="group relative"
             >
-              <div 
+              <div
                 onClick={() => setSelected(service)}
                 className="group cursor-pointer flex items-center gap-3 px-6 py-4 rounded-2xl bg-white/50 backdrop-blur-md border border-slate-200/60 shadow-sm transition-all duration-300 hover:bg-white hover:border-blue-200 hover:-translate-y-1 hover:shadow-md"
               >
@@ -284,7 +277,7 @@ const Services = () => {
           ))}
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           className="mt-32 relative min-h-[500px] flex items-center justify-center overflow-hidden"
@@ -294,21 +287,21 @@ const Services = () => {
             {[...Array(20)].map((_, i) => (
               <motion.div
                 key={i}
-                animate={{ 
+                animate={{
                   x: [Math.random() * 100 - 50, Math.random() * 100 - 50],
                   y: [Math.random() * 100 - 50, Math.random() * 100 - 50],
                   scale: [1, 1.5, 1],
                   opacity: [0.1, 0.4, 0.1],
                 }}
-                transition={{ 
-                  duration: 10 + Math.random() * 10, 
-                  repeat: Infinity, 
-                  ease: "linear" 
+                transition={{
+                  duration: 10 + Math.random() * 10,
+                  repeat: Infinity,
+                  ease: "linear"
                 }}
                 className="absolute w-2 h-2 bg-blue-400 rounded-full blur-[2px]"
-                style={{ 
-                  left: `${Math.random() * 100}%`, 
-                  top: `${Math.random() * 100}%` 
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`
                 }}
               />
             ))}
@@ -316,10 +309,10 @@ const Services = () => {
 
           {/* Transparent Frame */}
           <div className="relative z-10 w-full max-w-6xl p-12 md:p-24 rounded-[5rem] border border-white/20 backdrop-blur-[2px] group overflow-hidden">
-            
+
             {/* Animated Edge Glow */}
-            <motion.div 
-              animate={{ 
+            <motion.div
+              animate={{
                 rotate: 360,
               }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -335,32 +328,41 @@ const Services = () => {
                 Trascendiendo el Código
               </motion.span>
 
-              <h3 className="text-5xl md:text-8xl font-black text-slate-900 mb-10 tracking-tighter leading-tight">
+              <h3 className="text-5xl md:text-8xl font-black text-[#0A2540] mb-10 tracking-tighter leading-tight">
                 ¿Tu idea está <br />
-                <span className="text-gradient-dark">preparada?</span>
+                <span className="relative inline-block">
+                  preparada?
+                  <motion.div
+                    animate={{ scaleX: [0, 1, 0] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                    className="absolute bottom-2 left-0 w-full h-3 bg-blue-500/20 -z-10 origin-left"
+                  />
+                </span>
               </h3>
-              
-              <p className="text-slate-600 text-xl md:text-3xl font-medium leading-relaxed max-w-3xl mb-16">
-                Desbloqueamos el <span className="font-bold text-blue-700">potencial infinito</span> de tu negocio con tecnología que <span className="font-bold text-blue-700">respira.</span>
+
+              <p className="text-slate-800 text-xl md:text-3xl font-semibold leading-relaxed max-w-3xl mb-16">
+                Desbloqueamos el potencial infinito de tu negocio con tecnología que respira.
               </p>
 
               <div className="flex flex-wrap justify-center gap-8">
-                <a 
+                <a
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/btn relative px-16 py-7 bg-blue-700 text-white font-bold rounded-2xl text-lg shadow-[0_15px_30px_-5px_rgba(29,78,216,0.3)] hover:shadow-[0_20px_40px_-5px_rgba(29,78,216,0.5)] hover:bg-blue-800 transition-all duration-300 flex items-center gap-3 overflow-hidden border border-blue-600"
+                  className="group/btn relative px-16 py-8 bg-transparent border-2 border-blue-600 text-blue-600 font-black rounded-full hover:bg-blue-600 hover:text-white transition-all duration-500 flex items-center gap-4 overflow-hidden"
                 >
-                  <span className="uppercase tracking-widest font-extrabold text-base">Hacerlo Realidad</span>
-                  <ArrowRight size={20} className="group-hover/btn:translate-x-2 transition-transform" />
-                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
+                  <span className="text-lg uppercase tracking-widest">Hacerlo Realidad</span>
+                  <ArrowRight size={24} className="group-hover/btn:translate-x-2 transition-transform" />
+
+                  {/* Neon Glow Hover */}
+                  <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover/btn:opacity-100 transition-opacity -z-10 shadow-[0_0_50px_rgba(37,99,235,0.8)]" />
                 </a>
               </div>
             </div>
           </div>
 
-          {/* Ambient Lighting - White Radial Mask to clear clouds */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[650px] bg-radial-glow-white opacity-95 rounded-full -z-10 pointer-events-none" />
+          {/* Ambient Lighting */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-400/5 blur-[150px] -z-10" />
         </motion.div>
       </div>
 
@@ -368,22 +370,22 @@ const Services = () => {
       <AnimatePresence>
         {selected && (
           <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelected(null)}
               className="absolute inset-0 bg-[#0A2540]/60 backdrop-blur-xl"
             />
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="relative w-full max-w-xl bg-white/95 backdrop-blur-md rounded-[3rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] overflow-hidden border border-white max-h-[90vh] overflow-y-auto"
             >
               {/* Botón Cerrar */}
-              <button 
+              <button
                 onClick={() => setSelected(null)}
                 className="absolute top-6 right-6 p-3 bg-slate-100 hover:bg-rose-50 hover:text-rose-500 rounded-full transition-all z-20"
               >
@@ -417,8 +419,8 @@ const Services = () => {
                     <h4 className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mb-4">Lo que incluimos</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {selected.includes.map((item, i) => (
-                        <div 
-                          key={i} 
+                        <div
+                          key={i}
                           className="flex items-center gap-3 p-3 bg-white rounded-2xl border border-slate-100 shadow-sm"
                         >
                           <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center text-blue-500">
@@ -430,7 +432,7 @@ const Services = () => {
                     </div>
                   </div>
 
-                  <button 
+                  <button
                     onClick={() => handleContact(selected.title)}
                     className="w-full py-5 bg-[#0A2540] text-white font-black rounded-2xl hover:bg-blue-600 transition-all shadow-xl shadow-blue-900/20 uppercase text-xs tracking-widest flex items-center justify-center gap-3"
                   >

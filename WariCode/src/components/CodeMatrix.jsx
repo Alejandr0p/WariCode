@@ -18,21 +18,21 @@ const BackgroundRain = () => {
     dropImg.height = 64;
     const dropCtx = dropImg.getContext('2d');
     const cx = 32, cy = 32, cr = 26;
-    
+
     // Sombra pequeñísima
     dropCtx.beginPath();
     dropCtx.arc(cx, cy + cr * 0.1, cr * 0.9, 0, Math.PI * 2);
-    dropCtx.fillStyle = 'rgba(10, 30, 80, 0.15)'; 
+    dropCtx.fillStyle = 'rgba(10, 30, 80, 0.15)';
     dropCtx.fill();
 
     // Cuerpo cristalino
     dropCtx.beginPath();
     dropCtx.arc(cx, cy, cr, 0, Math.PI * 2);
     const grad = dropCtx.createLinearGradient(cx - cr, cy - cr, cx + cr, cy + cr);
-    grad.addColorStop(0, 'rgba(255, 255, 255, 0.9)'); 
-    grad.addColorStop(0.4, 'rgba(255, 255, 255, 0.0)'); 
-    grad.addColorStop(0.7, 'rgba(165, 180, 252, 0.1)'); 
-    grad.addColorStop(1, 'rgba(255, 255, 255, 0.8)'); 
+    grad.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+    grad.addColorStop(0.4, 'rgba(255, 255, 255, 0.0)');
+    grad.addColorStop(0.7, 'rgba(165, 180, 252, 0.1)');
+    grad.addColorStop(1, 'rgba(255, 255, 255, 0.8)');
     dropCtx.fillStyle = grad;
     dropCtx.fill();
 
@@ -57,16 +57,16 @@ const BackgroundRain = () => {
       trailDrops.length = 0;
 
       const numStatic = Math.floor((width * height) / 3000);
-      for(let i = 0; i < numStatic; i++) {
+      for (let i = 0; i < numStatic; i++) {
         trailDrops.push({
           x: Math.random() * width,
           y: Math.random() * height,
           r: Math.random() * 3 + 0.5,
-          life: 1 
+          life: 1
         });
       }
 
-      for(let i = 0; i < maxDrops; i++) {
+      for (let i = 0; i < maxDrops; i++) {
         drops.push({
           x: Math.random() * width,
           y: Math.random() * height,
@@ -88,7 +88,7 @@ const BackgroundRain = () => {
         const t = trailDrops[i];
         ctx.globalAlpha = t.life;
         ctx.drawImage(dropImg, t.x - t.r, t.y - t.r, t.r * 2, t.r * 2);
-        
+
         if (t.life < 1) {
           t.life -= 0.002;
           if (t.life <= 0) {
@@ -108,8 +108,8 @@ const BackgroundRain = () => {
         } else {
           drop.y += drop.speedY;
           drop.speedY += 0.02; // Gravedad bajísima
-          if (drop.speedY > 3.5) drop.speedY = 3.5; 
-          
+          if (drop.speedY > 3.5) drop.speedY = 3.5;
+
           drop.x += (Math.random() - 0.5) * 1.0;
 
           if (Math.random() > 0.5) {
@@ -118,13 +118,13 @@ const BackgroundRain = () => {
               x: drop.x + (Math.random() - 0.5) * 1.5,
               y: drop.y - drop.r,
               r: drop.r * (Math.random() * 0.4 + 0.3),
-              life: 0.8 
+              life: 0.8
             });
           }
 
           if (drop.r <= 2 || drop.y > height + 50) {
             drop.x = Math.random() * width;
-            drop.y = Math.random() * -100; 
+            drop.y = Math.random() * -100;
             drop.r = Math.random() * 4 + 2;
             drop.speedY = 0;
             drop.isSliding = false;
@@ -161,18 +161,18 @@ const BackgroundRain = () => {
       </style>
 
       {/* Fondo de nubes reales esponjosas con animación 3D de paneo lento */}
-      <img 
-        src="https://images.unsplash.com/photo-1499346030926-9a72daac6c63?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+      <img
+        src="https://images.unsplash.com/photo-1499346030926-9a72daac6c63?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
         alt="Real Fluffy Clouds"
         className="absolute inset-0 w-full h-full object-cover animate-clouds"
       />
-      
+
       {/* Simulación física de un Vidrio Real, completamente claro (SIN difuminado) */}
       <div className="absolute inset-3 md:inset-6 lg:inset-8 border-2 border-white/40 shadow-[0_0_20px_rgba(0,0,0,0.1),inset_0_0_60px_rgba(255,255,255,0.4)] rounded-3xl overflow-hidden">
-        
+
         {/* Reflejo diagonal de la luz en el cristal */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent opacity-80" />
-        
+
         {/* Lienzo donde cae la lluvia */}
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       </div>

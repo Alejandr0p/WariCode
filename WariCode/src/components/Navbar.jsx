@@ -18,21 +18,20 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 w-full z-[100] px-4 py-4 pointer-events-none flex justify-center">
-      <motion.nav 
+      <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className={`pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${
-          scrolled 
-            ? 'w-full md:w-[700px] bg-white/70 backdrop-blur-2xl border border-black/5 py-3 md:rounded-full apple-shadow' 
+        className={`pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${scrolled
+            ? 'w-full md:w-[700px] bg-white/70 backdrop-blur-2xl border border-black/5 py-3 md:rounded-full apple-shadow'
             : 'w-full max-w-6xl bg-transparent py-4 rounded-none'
-        } flex items-center justify-between px-6 md:px-8`}
+          } flex items-center justify-between px-6 md:px-8`}
       >
         <a href="#inicio" className="flex items-center gap-2 group cursor-pointer">
           <span className="text-xl font-bold tracking-tight text-slate-900">
             WariCode<span className="text-[#3B82F6]">.</span>
           </span>
         </a>
-        
+
         <div className="hidden md:flex items-center gap-8">
           {[
 
@@ -48,7 +47,7 @@ const Navbar = () => {
               {item.name}
             </a>
           ))}
-          <motion.a 
+          <motion.a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
@@ -73,7 +72,7 @@ const Navbar = () => {
       {/* Mobile menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
@@ -96,7 +95,7 @@ const Navbar = () => {
                   {item.name}
                 </a>
               ))}
-              <a 
+              <a
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
