@@ -134,6 +134,8 @@ const Services = () => {
     <section id="servicios" className="py-32 relative bg-transparent overflow-hidden">
       {/* Animated Floating Clouds in Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Invisible White Radial Mask to clear clouds under the text container */}
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[1000px] md:w-[1200px] h-[500px] bg-radial-glow-white opacity-85 rounded-full" />
         <motion.div 
           animate={{ x: [-100, 100], y: [0, -20, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -164,18 +166,18 @@ const Services = () => {
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-bold tracking-tight text-[#0A2540] mb-8"
+            className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.15] mb-6 tracking-tight text-slate-900"
           >
-            Hacemos crecer <br /> <span className="text-blue-700">tu negocio.</span>
+            Hacemos crecer <br /> <span className="text-gradient-dark">tu negocio.</span>
           </motion.h2>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-slate-800 max-w-2xl mx-auto leading-relaxed font-medium"
+            className="text-slate-800 text-lg md:text-2xl font-medium max-w-3xl mx-auto mb-10 md:mb-12 leading-relaxed px-4 md:px-0"
           >
-            Aplicamos el rigor de la ingeniería de la <span className="text-[#1E3A8A] font-bold">UNI</span> para desarrollar soluciones que simplifican procesos y potencian el crecimiento de todo tipo de industrias.
+            Aplicamos el rigor de la ingeniería de la <span className="font-bold text-blue-700">UNI</span> para desarrollar soluciones que simplifican procesos y potencian el crecimiento de todo tipo de industrias.
           </motion.p>
         </div>
 
@@ -224,28 +226,33 @@ const Services = () => {
         </div>
 
         {/* SECTION HEADER FOR ADDITIONAL SECTOR-SPECIFIC SERVICES */}
-        <div className="text-center mt-28 mb-16 max-w-2xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            className="inline-block px-4 py-1.5 rounded-full bg-white/50 border border-slate-200/50 shadow-sm mb-4"
-          >
-            <span className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">Soluciones Especializadas</span>
-          </motion.div>
-          <motion.h3 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-3xl md:text-4xl font-extrabold text-[#0A2540] tracking-tight mb-4"
-          >
-            Especialidades por Sector
-          </motion.h3>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-slate-800 font-semibold text-sm md:text-base leading-relaxed"
-          >
-            Sistemas especializados diseñados para cubrir las necesidades operativas específicas de cada rubro.
-          </motion.p>
+        <div className="text-center mt-32 mb-16 max-w-4xl mx-auto relative">
+          {/* Invisible White Radial Mask to clear clouds under this container */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] md:w-[1200px] h-[450px] bg-radial-glow-white opacity-90 rounded-full pointer-events-none z-0" />
+          
+          <div className="relative z-10">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              className="inline-block px-4 py-1.5 rounded-full bg-white/50 border border-slate-200/50 shadow-sm mb-4"
+            >
+              <span className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">Soluciones Especializadas</span>
+            </motion.div>
+            <motion.h3 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.15] mb-6 tracking-tight text-slate-900"
+            >
+              Especialidades por <span className="text-gradient-dark">Sector</span>
+            </motion.h3>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-slate-800 text-lg md:text-2xl font-medium max-w-3xl mx-auto mb-10 md:mb-12 leading-relaxed px-4 md:px-0"
+            >
+              Sistemas especializados diseñados para cubrir las necesidades operativas específicas de cada <span className="font-bold text-blue-700">rubro.</span>
+            </motion.p>
+          </div>
         </div>
 
         {/* ADDITIONAL SECTOR-SPECIFIC SERVICES (Compact mention badges) */}
@@ -328,20 +335,13 @@ const Services = () => {
                 Trascendiendo el Código
               </motion.span>
 
-              <h3 className="text-5xl md:text-8xl font-black text-[#0A2540] mb-10 tracking-tighter leading-tight">
+              <h3 className="text-5xl md:text-8xl font-black text-slate-900 mb-10 tracking-tighter leading-tight">
                 ¿Tu idea está <br />
-                <span className="relative inline-block">
-                  preparada?
-                  <motion.div 
-                    animate={{ scaleX: [0, 1, 0] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                    className="absolute bottom-2 left-0 w-full h-3 bg-blue-500/20 -z-10 origin-left"
-                  />
-                </span>
+                <span className="text-gradient-dark">preparada?</span>
               </h3>
               
-              <p className="text-slate-800 text-xl md:text-3xl font-semibold leading-relaxed max-w-3xl mb-16">
-                Desbloqueamos el potencial infinito de tu negocio con tecnología que respira.
+              <p className="text-slate-600 text-xl md:text-3xl font-medium leading-relaxed max-w-3xl mb-16">
+                Desbloqueamos el <span className="font-bold text-blue-700">potencial infinito</span> de tu negocio con tecnología que <span className="font-bold text-blue-700">respira.</span>
               </p>
 
               <div className="flex flex-wrap justify-center gap-8">
@@ -349,20 +349,18 @@ const Services = () => {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/btn relative px-16 py-8 bg-transparent border-2 border-blue-600 text-blue-600 font-black rounded-full hover:bg-blue-600 hover:text-white transition-all duration-500 flex items-center gap-4 overflow-hidden"
+                  className="group/btn relative px-16 py-7 bg-blue-700 text-white font-bold rounded-2xl text-lg shadow-[0_15px_30px_-5px_rgba(29,78,216,0.3)] hover:shadow-[0_20px_40px_-5px_rgba(29,78,216,0.5)] hover:bg-blue-800 transition-all duration-300 flex items-center gap-3 overflow-hidden border border-blue-600"
                 >
-                  <span className="text-lg uppercase tracking-widest">Hacerlo Realidad</span>
-                  <ArrowRight size={24} className="group-hover/btn:translate-x-2 transition-transform" />
-                  
-                  {/* Neon Glow Hover */}
-                  <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover/btn:opacity-100 transition-opacity -z-10 shadow-[0_0_50px_rgba(37,99,235,0.8)]" />
+                  <span className="uppercase tracking-widest font-extrabold text-base">Hacerlo Realidad</span>
+                  <ArrowRight size={20} className="group-hover/btn:translate-x-2 transition-transform" />
+                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
                 </a>
               </div>
             </div>
           </div>
 
-          {/* Ambient Lighting */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-400/5 blur-[150px] -z-10" />
+          {/* Ambient Lighting - White Radial Mask to clear clouds */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[650px] bg-radial-glow-white opacity-95 rounded-full -z-10 pointer-events-none" />
         </motion.div>
       </div>
 

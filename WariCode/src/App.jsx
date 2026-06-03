@@ -61,6 +61,8 @@ const App = () => {
             <div className="absolute inset-0 pointer-events-none">
               {/* Large soft orb */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-blue-50/30 rounded-full blur-[140px]" />
+              {/* Invisible White Radial Mask to clear clouds under the text container */}
+              <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[1000px] md:w-[1200px] h-[550px] bg-radial-glow-white opacity-85 rounded-full" />
               {/* Grid lines */}
               <div className="absolute inset-0 opacity-[0.03]"
                 style={{ backgroundImage: 'linear-gradient(#1E3A8A 1px, transparent 1px), linear-gradient(90deg, #1E3A8A 1px, transparent 1px)', backgroundSize: '60px 60px' }}
@@ -81,7 +83,7 @@ const App = () => {
               <div className="max-w-6xl mx-auto">
 
                 {/* ── Section badge + heading ── */}
-                <div className="text-center mb-20 max-w-3xl mx-auto">
+                <div className="text-center mb-20 max-w-4xl mx-auto">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -101,10 +103,10 @@ const App = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 mb-5 leading-tight"
+                    className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.15] mb-6 tracking-tight text-slate-900"
                   >
-                    Impulsamos el Éxito de{' '}
-                    <span className="text-gradient">Tu Empresa.</span>
+                    Impulsamos el Éxito de <br className="hidden md:block" />
+                    <span className="text-gradient-dark">Tu Empresa.</span>
                   </motion.h2>
 
                   <motion.p
@@ -112,10 +114,9 @@ const App = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
-                    className="text-slate-500 font-medium text-base md:text-lg leading-relaxed"
+                    className="text-slate-800 text-lg md:text-2xl font-medium max-w-3xl mx-auto mb-10 md:mb-12 leading-relaxed px-4 md:px-0"
                   >
-                    Combinamos el rigor de la mejor ingeniería peruana con un diseño moderno
-                    para crear soluciones digitales de alto impacto.
+                    Combinamos el rigor de la mejor <span className="font-bold text-blue-700">ingeniería peruana</span> con un diseño moderno para crear <span className="font-bold text-blue-700">soluciones digitales de alto impacto.</span>
                   </motion.p>
                 </div>
 

@@ -48,9 +48,28 @@ const projects = [
 const Portfolio = () => {
   const scrollRef = React.useRef(null);
   const [isPaused, setIsPaused] = React.useState(false);
+  const dragInfo = React.useRef({ isDragging: false, startX: 0, scrollLeft: 0, hasDragged: false });
 
   // Triple the projects for infinite scroll
   const allProjects = [...projects, ...projects, ...projects];
+
+  React.useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    // Scroll wheel handler (vertical scroll -> horizontal scroll)
+    const onWheel = (e) => {
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        container.scrollLeft += e.deltaY * 1.2;
+      }
+    };
+
+    container.addEventListener('wheel', onWheel, { passive: false });
+    return () => {
+      container.removeEventListener('wheel', onWheel);
+    };
+  }, []);
 
   React.useEffect(() => {
     let animationFrame;
@@ -82,28 +101,70 @@ const Portfolio = () => {
     return () => cancelAnimationFrame(animationFrame);
   }, [isPaused]);
 
+  const handleMouseDown = (e) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    dragInfo.current = {
+      isDragging: true,
+      startX: e.pageX - container.offsetLeft,
+      scrollLeft: container.scrollLeft,
+      hasDragged: false
+    };
+    setIsPaused(true);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!dragInfo.current.isDragging) return;
+    e.preventDefault();
+    const container = scrollRef.current;
+    if (!container) return;
+    const x = e.pageX - container.offsetLeft;
+    const walk = (x - dragInfo.current.startX) * 1.5;
+    
+    if (Math.abs(x - dragInfo.current.startX) > 8) {
+      dragInfo.current.hasDragged = true;
+    }
+    
+    container.scrollLeft = dragInfo.current.scrollLeft - walk;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    if (dragInfo.current.isDragging) {
+      dragInfo.current.isDragging = false;
+      setTimeout(() => {
+        dragInfo.current.hasDragged = false;
+      }, 50);
+    }
+    setIsPaused(false);
+  };
+
   return (
     <section id="portafolio" className="py-32 relative bg-transparent overflow-hidden">
-      <div className="container mx-auto px-6 mb-20 text-center">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/40 backdrop-blur-md border border-white/60 text-[10px] font-black text-blue-600 uppercase tracking-[0.2em] mb-6 shadow-sm"
-        >
-          Portafolio Real
-        </motion.div>
+      <div className="container mx-auto px-6 mb-20 text-center relative">
+        {/* Invisible White Radial Mask to clear clouds under this container */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] md:w-[1200px] h-[450px] bg-radial-glow-white opacity-90 rounded-full pointer-events-none z-0" />
         
-        <motion.h2 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-7xl font-bold tracking-tighter text-[#0A2540] mb-8"
-        >
-          Proyectos <span className="text-blue-500">Exitosos.</span>
-        </motion.h2>
-        
-        <p className="text-xl text-slate-700 max-w-2xl mx-auto leading-relaxed font-medium">
-          Desde la <span className="text-[#1E3A8A] font-bold">UNI</span> para el mundo: desarrollamos soluciones de alta ingeniería que ya están transformando la realidad de miles de usuarios.
-        </p>
+        <div className="relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/40 backdrop-blur-md border border-white/60 text-[10px] font-black text-blue-600 uppercase tracking-[0.2em] mb-6 shadow-sm"
+          >
+            Portafolio Real
+          </motion.div>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.15] mb-6 tracking-tight text-slate-900"
+          >
+            Proyectos <span className="text-gradient-dark">Exitosos.</span>
+          </motion.h2>
+          
+          <p className="text-slate-800 text-lg md:text-2xl font-medium max-w-3xl mx-auto mb-10 md:mb-12 leading-relaxed px-4 md:px-0">
+            Desde la <span className="font-bold text-blue-700">UNI</span> para el mundo: desarrollamos soluciones de alta ingeniería que ya están transformando la realidad de miles de usuarios.
+          </p>
+        </div>
       </div>
 
       <div className="relative w-full">
@@ -113,9 +174,10 @@ const Portfolio = () => {
         
         <div 
           ref={scrollRef}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          onMouseDown={() => setIsPaused(true)}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUpOrLeave}
+          onMouseLeave={handleMouseUpOrLeave}
           className={`flex gap-8 pb-20 pt-10 overflow-x-auto scrollbar-hide select-none transition-all duration-300 ${isPaused ? 'opacity-100' : 'opacity-95'}`}
           style={{ scrollSnapType: 'x proximity' }}
         >
@@ -128,6 +190,12 @@ const Portfolio = () => {
               whileHover={{ y: -10, scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="relative w-[300px] sm:w-[350px] md:w-[450px] flex-shrink-0 group/card scroll-snap-align-start"
+              onDragStart={(e) => e.preventDefault()}
+              onClick={(e) => {
+                if (dragInfo.current.hasDragged) {
+                  e.preventDefault();
+                }
+              }}
             >
               <div className="h-full rounded-[3rem] bg-white border-2 border-white shadow-[0_20px_50px_-15px_rgba(148,163,184,0.15)] overflow-hidden transition-all duration-500 group-hover/card:shadow-blue-200/50 group-hover/card:border-blue-100">
                 {/* Image Container */}
