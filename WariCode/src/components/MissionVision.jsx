@@ -169,44 +169,49 @@ const MissionVision = () => {
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}
             variants={containerVariants}
-            className="text-center mb-24 md:mb-32"
+            className="text-center mb-24 md:mb-32 relative"
           >
-            {/* Badge with pulse */}
-            <motion.div variants={scaleUp} className="mb-6">
-              <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-blue-200/60 bg-white/60 backdrop-blur-sm text-xs font-semibold text-[#1E3A8A] uppercase tracking-[0.2em]">
-                <motion.span
-                  animate={{ scale: [1, 1.4, 1], opacity: [0.6, 1, 0.6] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="w-2 h-2 rounded-full bg-[#3B82F6] inline-block"
+            {/* White Radial Mask to clear background patterns */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] md:w-[1200px] h-[450px] bg-radial-glow-white opacity-90 rounded-full pointer-events-none z-0" />
+
+            <div className="relative z-10">
+              {/* Badge with pulse */}
+              <motion.div variants={scaleUp} className="mb-6">
+                <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-blue-200/60 bg-white/60 backdrop-blur-sm text-xs font-semibold text-[#1E3A8A] uppercase tracking-[0.2em]">
+                  <motion.span
+                    animate={{ scale: [1, 1.4, 1], opacity: [0.6, 1, 0.6] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="w-2 h-2 rounded-full bg-[#3B82F6] inline-block"
+                  />
+                  Nuestro Propósito
+                </span>
+              </motion.div>
+
+              <motion.h2
+                variants={itemVariants}
+                className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6"
+              >
+                Construimos el futuro
+                <br />
+                <span className="text-gradient">digital del Perú.</span>
+              </motion.h2>
+
+              <motion.p
+                variants={itemVariants}
+                className="text-slate-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium"
+              >
+                Combinamos ingeniería de alto nivel con diseño de vanguardia
+                para crear soluciones que transforman negocios.
+              </motion.p>
+
+              {/* Animated separator line */}
+              <motion.div className="mt-10 mx-auto h-px max-w-xs overflow-hidden">
+                <motion.div
+                  style={{ width: lineWidth }}
+                  className="h-full bg-gradient-to-r from-transparent via-blue-400 to-transparent"
                 />
-                Nuestro Propósito
-              </span>
-            </motion.div>
-
-            <motion.h2
-              variants={itemVariants}
-              className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6"
-            >
-              Construimos el futuro
-              <br />
-              <span className="text-gradient">digital del Perú.</span>
-            </motion.h2>
-
-            <motion.p
-              variants={itemVariants}
-              className="text-slate-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium"
-            >
-              Combinamos ingeniería de alto nivel con diseño de vanguardia
-              para crear soluciones que transforman negocios.
-            </motion.p>
-
-            {/* Animated separator line */}
-            <motion.div className="mt-10 mx-auto h-px max-w-xs overflow-hidden">
-              <motion.div
-                style={{ width: lineWidth }}
-                className="h-full bg-gradient-to-r from-transparent via-blue-400 to-transparent"
-              />
-            </motion.div>
+              </motion.div>
+            </div>
           </motion.div>
 
           {/* ── Pillar Panels ── */}

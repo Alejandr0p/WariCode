@@ -151,34 +151,38 @@ const Services = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-24">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-white/80 shadow-lg mb-8"
-          >
-            <Sun className="w-4 h-4 text-amber-500 animate-spin-slow" />
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-widest">Lo que hacemos por ti</span>
-          </motion.div>
+        <div className="text-center mb-24 relative">
+          {/* White Radial Mask to clear background patterns */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] md:w-[1200px] h-[450px] bg-radial-glow-white opacity-90 rounded-full pointer-events-none z-0" />
 
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-bold tracking-tight text-[#0A2540] mb-8"
-          >
-            Hacemos crecer <br /> <span className="text-blue-700">tu negocio.</span>
-          </motion.h2>
+          <div className="relative z-10">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-white/80 shadow-lg mb-8"
+            >
+              <Sun className="w-4 h-4 text-amber-500 animate-spin-slow" />
+              <span className="text-xs font-bold text-blue-600 uppercase tracking-widest">Lo que hacemos por ti</span>
+            </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-xl text-slate-800 max-w-2xl mx-auto leading-relaxed font-medium"
-          >
-            Aplicamos el rigor de la ingeniería de la <span className="text-[#1E3A8A] font-bold">UNI</span> para desarrollar soluciones que simplifican procesos y potencian el crecimiento de todo tipo de industrias.
-          </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-5xl md:text-7xl font-bold tracking-tight text-[#0A2540] mb-8"
+            >
+              Hacemos crecer <br /> <span className="text-blue-700">tu negocio.</span>
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-xl text-slate-800 max-w-2xl mx-auto leading-relaxed font-medium"
+            >
+              Aplicamos el rigor de la ingeniería de la <span className="text-[#1E3A8A] font-bold">UNI</span> para desarrollar soluciones que simplifican procesos y potencian el crecimiento de todo tipo de industrias.
+            </motion.p>
+          </div>
         </div>
-
         {/* 4 MAIN SERVICES (Friendly, balanced and slightly larger UI/UX) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 xl:gap-6 mb-24 w-full px-2">
           {mainServices.map((service, index) => (
@@ -190,10 +194,14 @@ const Services = () => {
               transition={{ delay: index * 0.1, duration: 0.5 }}
               className="group relative"
             >
+              {/* White Radial Mask behind the specific requested cards (Landing Pages and Páginas de Presentación) */}
+              {(index === 0 || index === 1) && (
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] md:w-[450px] h-[350px] md:h-[450px] bg-radial-glow-white opacity-90 rounded-full pointer-events-none z-0" />
+              )}
               {/* Card Container (Perfect size) */}
               <div
                 onClick={() => setSelected(service)}
-                className="h-full cursor-pointer p-11 md:p-14 rounded-[3rem] bg-white/60 backdrop-blur-xl border border-blue-100/40 shadow-[0_20px_45px_-15px_rgba(30,58,138,0.05)] flex flex-col transition-all duration-500 hover:bg-white hover:shadow-blue-200/30 hover:-translate-y-2"
+                className="h-full cursor-pointer p-11 md:p-14 rounded-[3rem] bg-white/60 backdrop-blur-xl border border-blue-100/40 shadow-[0_20px_45px_-15px_rgba(30,58,138,0.05)] flex flex-col transition-all duration-500 hover:bg-white hover:shadow-blue-200/30 hover:-translate-y-2 relative z-10"
               >
                 {/* Icon and Subtitle Bubble */}
                 <div className="relative mb-6">
@@ -224,28 +232,33 @@ const Services = () => {
         </div>
 
         {/* SECTION HEADER FOR ADDITIONAL SECTOR-SPECIFIC SERVICES */}
-        <div className="text-center mt-28 mb-16 max-w-2xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            className="inline-block px-4 py-1.5 rounded-full bg-white/50 border border-slate-200/50 shadow-sm mb-4"
-          >
-            <span className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">Soluciones Especializadas</span>
-          </motion.div>
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-3xl md:text-4xl font-extrabold text-[#0A2540] tracking-tight mb-4"
-          >
-            Especialidades por Sector
-          </motion.h3>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-slate-800 font-semibold text-sm md:text-base leading-relaxed"
-          >
-            Sistemas especializados diseñados para cubrir las necesidades operativas específicas de cada rubro.
-          </motion.p>
+        <div className="text-center mt-28 mb-16 max-w-2xl mx-auto relative">
+          {/* White Radial Mask to clear background patterns */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] md:w-[1200px] h-[350px] bg-radial-glow-white opacity-90 rounded-full pointer-events-none z-0" />
+
+          <div className="relative z-10">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              className="inline-block px-4 py-1.5 rounded-full bg-white/50 border border-slate-200/50 shadow-sm mb-4"
+            >
+              <span className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">Soluciones Especializadas</span>
+            </motion.div>
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-3xl md:text-4xl font-extrabold text-[#0A2540] tracking-tight mb-4"
+            >
+              Especialidades por Sector
+            </motion.h3>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-slate-800 font-semibold text-sm md:text-base leading-relaxed"
+            >
+              Sistemas especializados diseñados para cubrir las necesidades operativas específicas de cada rubro.
+            </motion.p>
+          </div>
         </div>
 
         {/* ADDITIONAL SECTOR-SPECIFIC SERVICES (Compact mention badges) */}
